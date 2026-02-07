@@ -2,9 +2,25 @@ version: '3'
 
 vars:
     COMPILER: latexmk
-    JOBNAME: Document Template
+    JOBNAME: Homework 1
 
 tasks:
+    compile:graphics:
+        dir: ./src/
+        vars:
+            FLAGS: -pdf
+            INPUT_DIR: content/figures
+            OUTPUT_DIR: content/figures
+        cmds:
+            - |
+              {{ .COMPILER }} {{ .FLAGS }}              \
+                -output-directory="./{{ .OUTPUT_DIR }}" \
+                {{ .INPUT_DIR }}/exercise-1.2-2-graph.tikz
+            - |
+              {{ .COMPILER }} {{ .FLAGS }}              \
+                -output-directory="./{{ .OUTPUT_DIR }}" \
+                {{ .INPUT_DIR }}/exercise-2.1-1-sorting.tikz
+    
     cleanup:
         vars:
             FLAGS: -c
@@ -13,11 +29,12 @@ tasks:
               {{ .COMPILER }} {{ .FLAGS }} -jobname="{{ .JOBNAME }}"
 
     build:
+        dir: ./src/
         vars:
             FLAGS: -pdf
             ENTRYPOINT: main.tex
             
-            OUTPUT_DIR: .
+            OUTPUT_DIR: ..
         cmds:
             - |
               {{ .COMPILER }} {{ .FLAGS }}            \
