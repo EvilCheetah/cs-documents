@@ -1,0 +1,79 @@
+\item[\textbf{Exercise 2.1-5}]
+Consider the problem of adding two $n$-bit binary integers $a$ and $b$, stored
+in two $n$-element arrays $A[0 : n - 1]$ and $B[0 : n - 1]$, where each element
+is either 0 or 1, $a = \sum_{i=0}^{n-1} A[i] \cdot 2^i$, and $b =
+\sum_{i=0}^{n-1} B[i] \cdot 2^i$. The sum $c = a + b$ of the two integers should
+be stored in binary form in an $(n + 1)$-element array $C[0 : n]$, where $c =
+\sum_{i=0}^{n} C[i] \cdot 2^i$. Write a procedure \textsc{Add-Binary-Integers}
+that takes as input arrays $A$ and $B$, along with the length $n$, and returns
+array $C$ holding the sum.
+
+\Solution
+
+To determine the algorithm's behavior, consider the addition of two binary
+sequences, $A$ and $B$, of length $n$:
+
+\begin{enumerate}[
+    style      = multiline,
+    itemsep    = 2em,
+]
+    % Item 1
+    \item $
+    \begin{aligned}[t]
+        A &= \bvec{0, 1, 1, 0, 1}, & n &= 5 \\
+        B &= \bvec{1, 0, 0, 1, 0}, & n &= 5 \\
+        \hline
+        \text{SumBinaryLists}(A, B, n) \implies C &= \bvec{1, 1, 1, 1, 1, 0}, & n &= 6
+    \end{aligned}
+    $
+
+    % Item 2
+    \item $
+    \begin{aligned}[t]
+        A &= \bvec{1, 0, 0, 0, 1}, & n &= 5 \\
+        B &= \bvec{1, 1, 0, 1, 0}, & n &= 5 \\
+        \hline
+        \text{SumBinaryLists}(A, B, n) \implies C &= \bvec{0, 0, 1, 1, 1, 0}, & n &= 6
+    \end{aligned}
+    $
+
+    % Item 3
+    \item $
+    \begin{aligned}[t]
+        A &= \bvec{0, 0, 0, 0, 0}, & n &= 5 \\
+        B &= \bvec{0, 0, 0, 0, 0}, & n &= 5 \\
+        \hline
+        \text{SumBinaryLists}(A, B, n) \implies C &= \bvec{0, 0, 0, 0, 0, 0}, & n &= 6
+    \end{aligned}
+    $
+
+    % Item 4
+    \item $
+    \begin{aligned}[t]
+        A &= \bvec{1, 1, 1, 1, 1}, & n &= 5 \\
+        B &= \bvec{1, 1, 1, 1, 1}, & n &= 5 \\
+        \hline
+        \text{SumBinaryLists}(A, B, n) \implies C &= \bvec{0, 1, 1, 1, 1, 1}, & n &= 6
+    \end{aligned}
+    $
+\end{enumerate}
+
+Based on the examples above and the exercise specifications, we can conclude
+that a carry mechanism is required. The array $C$ requires an extra element (the
+$(n)$-th position) to store the final overflowing value.
+
+Here is the algorithm:
+
+\begin{codebox}
+\Procname{$\proc{SumBinaryLists}(A,B,n)$}
+\li $C[0 \subarr n] \gets \{0\}$
+\li $\id{carry} \gets 0$ 
+\li \For $i \gets 1$ \To $n - 1$ \Do
+\li     $\id{sum} \gets A[i] + B[i] + \id{carry}$
+\li     $C[i] = \id{sum} \bmod 2$
+\li     $\id{carry} \gets \lfloor \id{sum} / 2 \rfloor$
+    \End
+\li $C[n] \gets \id{carry}$
+\li \Return $C$
+\End
+\end{codebox}

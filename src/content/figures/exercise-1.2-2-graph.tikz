@@ -1,0 +1,76 @@
+\documentclass[tikz,border=5pt]{standalone}
+
+
+\usepackage{pgfplots}
+
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{intersections}
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            xlabel = {Input Size [n]},
+            ylabel = {Number of Steps},
+            legend pos = north west,
+            scaled y ticks = false,
+        ]
+            % Insertion Sort Graph
+            \addplot
+                [
+                    domain=0:50, 
+                    samples=100, 
+                    color=red,
+                    name path = insertion
+                ]
+                {8 * x^2};
+
+            \addlegendentry{%
+                Insertion Sort
+                (\(8{n^2}\))
+            }
+
+
+            % Merge Sort Graph
+            \addplot
+                [
+                    domain=0:50, 
+                    samples=100, 
+                    color=blue,
+                    name path = merge
+                ]
+                {64 * x * ln(x) / ln(2)};
+
+            \addlegendentry{%
+                Merge Sort
+                (\(64n \cdot log_{2}(n)\))
+            }
+
+
+            \draw[
+                font=\footnotesize,
+                name intersections={of=merge and insertion},
+            ]
+            node [
+                circle,
+                fill      = black,
+                inner sep = 1.5pt,
+                pin={
+                    [draw = black, fill = white, pin distance = 1in]200:
+                    \pgfplotspointgetcoordinates{(intersection-3)}
+                        $(
+                            \pgfmathprintnumber[fixed]{
+                                \pgfkeysvalueof{/data point/x}
+                            };
+                            \;
+                            \pgfmathprintnumber[fixed]{
+                                \pgfkeysvalueof{/data point/y}
+                            }
+                        )$
+                    }
+            ] at (intersection-3) {};
+        \end{axis}
+    \end{tikzpicture}
+\end{document}

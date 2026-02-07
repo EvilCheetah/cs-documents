@@ -1,0 +1,143 @@
+\documentclass[tikz,border=10pt]{standalone}
+
+
+\usetikzlibrary{
+    positioning,
+    arrows.meta,
+    calc
+}
+
+
+\begin{document}
+\begin{tikzpicture}[
+    node distance=0cm,
+    %
+    % Boxes
+    box.base/.style={draw, rectangle, minimum width=0.6cm, minimum height=0.6cm, outer sep=0pt, font=\bfseries},
+    box.sorted/.style={fill=orange!20}, 
+    box.key/.style={fill=cyan!30},      
+    box.unsorted/.style={fill=white},    
+    %
+    % Arrows
+    arrow.base/.style={->, >={Stealth[scale length=1.5]}},
+    arrow.move/.style={arrow.base, orange!90!black}, 
+    arrow.insert/.style={arrow.base, cyan!90!black}
+]
+
+    % --- Row Definition Macro ---
+    \newcommand
+        {\DrawRow}[4]
+        {%
+            \foreach \val [count=\i] in {#2} {
+                \ifnum\i=#4
+                    \node[box.base, box.key] (#1-\i) at (\i*0.6cm, 0) {\val};
+                \else
+                    \ifnum\i<#4
+                        \ifnum\i>#3 \node[box.base, box.unsorted] (#1-\i) at (\i*0.6cm, 0) {\val};
+                        \else \node[box.base, box.sorted] (#1-\i) at (\i*0.6cm, 0) {\val}; \fi
+                    \else \node[box.base, box.unsorted] (#1-\i) at (\i*0.6cm, 0) {\val}; \fi
+                \fi
+                \node[font=\tiny, above=1pt of #1-\i] {\i};
+            }%
+        }
+
+    
+    % --- Step (a) ---
+    \begin{scope}[shift={(0,0)}]
+        \node[font=\large, anchor=east] at (0,0) {(a)};
+
+        \DrawRow{a}{31, 41, 59, 26, 41, 58}{1}{2}
+        
+        \draw[arrow.insert]
+            ([xshift=+1.5mm]a-2.south)
+            to[out=-90, in=-90, looseness=2.4mm]
+            ([xshift=-1.5mm]a-2.south);
+    \end{scope}
+
+
+    % --- Step (b) ---
+    \begin{scope}[shift={(5,0)}]
+        \node[font=\large, anchor=east] at (0,0) {(b)};
+
+        \DrawRow{b}{31, 41, 59, 26, 41, 58}{2}{3}
+
+        \draw[arrow.insert]
+            ([xshift=+1.5mm]b-3.south)
+            to[out=-90, in=-90, looseness=2.4mm]
+            ([xshift=-1.5mm]b-3.south);
+    \end{scope}
+
+
+    % --- Step (c) ---
+    \begin{scope}[shift={(10,0)}]
+        \node[font=\large, anchor=east] at (0,0) {(c)};
+
+        \DrawRow{c}{31, 41, 59, 26, 41, 58}{3}{4}
+
+        \foreach \f/\t in {1/2, 2/3, 3/4} {
+            \draw[arrow.move]
+                ([xshift=+4pt]c-\f.south)
+                to[out=-90, in=-90, looseness=4]
+                ([xshift=-4pt]c-\t.south);
+        }
+
+        \draw[arrow.insert, rounded corners=3mm]
+            ([xshift=+1.5mm]c-4.south)
+            -- ++(-1.5mm, -6.25mm)
+            -- ($(c-1.south) + (0mm, -6.25mm)$)
+            -- ([xshift=-1.5mm]c-1.south);
+    \end{scope}
+
+
+    % --- Step (d) ---
+    \begin{scope}[shift={(0,-2.5)}]
+        \node[font=\large, anchor=east] at (0,0) {(d)};
+
+        \DrawRow{d}{26, 31, 41, 59, 41, 58}{4}{5}
+
+        \foreach \f/\t in {4/5} {
+            \draw[arrow.move]
+                ([xshift=+4pt]d-\f.south)
+                to[out=-90, in=-90, looseness=4]
+                ([xshift=-4pt]d-\t.south);
+        }
+
+        \draw[arrow.insert]
+            ([xshift=+1.5mm]d-5.south)
+            to[out=-90, in=-90, looseness=0.8mm]
+            ([xshift=-1.5mm]d-4.south);
+    \end{scope}
+
+
+    % --- Step (e) ---
+    \begin{scope}[shift={(5,-2.5)}]
+        \node[font=\large, anchor=east] at (0,0) {(e)};
+
+        \DrawRow{e}{26, 31, 41, 41, 59, 58}{5}{6}
+
+        \foreach \f/\t in {5/6} {
+            \draw[arrow.move]
+                ([xshift=+4pt]e-\f.south)
+                to[out=-90, in=-90, looseness=4]
+                ([xshift=-4pt]e-\t.south);
+        }
+
+        \draw[arrow.insert]
+            ([xshift=+1.5mm]e-6.south)
+            to[out=-90, in=-90, looseness=0.8mm]
+            ([xshift=-1.5mm]e-5.south);
+    \end{scope}
+
+
+    % --- Step (f) ---
+    \begin{scope}[shift={(10,-2.5)}]
+        \node[font=\large, anchor=east] at (0,0) {(f)};
+        
+        \foreach \val [count=\i] in {26, 31, 41, 41, 58, 59} {
+            \node[box.base, box.sorted] (f-\i) at (\i*0.6cm, 0) {\val};
+            \node[font=\tiny, above=1pt of f-\i] {\i};
+        }
+    \end{scope}
+
+\end{tikzpicture}
+\end{document}
