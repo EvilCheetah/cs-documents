@@ -1,0 +1,83 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, calc, shapes.geometric}
+
+\begin{document}
+
+% --- Defined Symbol Command ---
+% This creates a small, scalable Step Function symbol
+\newcommand{\stepfunc}{%
+    \begin{tikzpicture}[baseline=-0.5ex, scale=0.375] 
+        % You can adjust 'scale' to change size relative to the box
+        \draw[line width=1.5pt, draw=red!80] (-1, -1) -- (0, -1) -- (0, 1) -- (1, 1);
+    \end{tikzpicture}%
+}
+
+\begin{tikzpicture}[
+    % Global Styles
+    >=LaTeX, 
+    node distance=2.5cm,
+    font=\sffamily,
+    % Style for Input Nodes
+    input/.style={
+        circle, 
+        draw=blue!60, 
+        fill=blue!5, 
+        very thick, 
+        minimum size=1cm
+    },
+    % Style for the Neuron (Summation)
+    neuron/.style={
+        circle, 
+        draw=black!75, 
+        fill=gray!5, 
+        very thick, 
+        minimum size=1.5cm
+    },
+    % Style for the Activation Function
+    function/.style={
+        draw, 
+        rectangle, 
+        draw=red!80, 
+        fill=red!5, 
+        very thick, 
+        minimum size=1.2cm
+    },
+    % Style for the Output
+    output/.style={
+        coordinate
+    }
+]
+    % --- 1. Nodes ---
+    
+    % The Summation Node
+    \node[neuron] (sum) at (0,0) {$\sum$};
+    
+    % The Activation Function Node
+    % >>> CHANGE HAPPENED HERE <<<
+    \node[function, right=1.5cm of sum] (act) {\stepfunc};
+    
+    % The Input Nodes (x1, x2, x3)
+    \node[input] (x2) [left=3cm of sum] {$x_1$};
+    \node[input] (x1) [above=1.5cm of x2] {$1$};
+    \node[input] (x3) [below=1.5cm of x2] {$x_2$};
+
+    % The Output Coordinate
+    \node[right=1.5cm of act, text=red!80] (a) {$a$};
+
+
+    % --- 2. Connections (Edges) ---
+
+    % Connect Inputs to Summation
+    \draw[->, thick] (x1) -- node[above, pos=0.3, yshift=3pt] {$0.5$} (sum);
+    \draw[->, thick] (x2) -- node[above, pos=0.3]             {$1.0$} (sum);
+    \draw[->, thick] (x3) -- node[above, pos=0.3, yshift=3pt] {$-0.3$} (sum);
+
+    % Connect Summation to Activation
+    \draw[->, thick] (sum) -- (act);
+
+    % Connect Activation to Output
+    \draw[->, thick, draw=red!80] (act) -- (a);
+
+\end{tikzpicture}
+\end{document}

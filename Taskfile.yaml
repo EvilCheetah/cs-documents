@@ -15,11 +15,23 @@ tasks:
             - |
               {{ .COMPILER }} {{ .FLAGS }}              \
                 -output-directory="./{{ .OUTPUT_DIR }}" \
-                {{ .INPUT_DIR }}/exercise-1.2-2-graph.tikz
+                {{ .INPUT_DIR }}/problem-1-an-diagram.tikz
             - |
               {{ .COMPILER }} {{ .FLAGS }}              \
                 -output-directory="./{{ .OUTPUT_DIR }}" \
-                {{ .INPUT_DIR }}/exercise-2.1-1-sorting.tikz
+                {{ .INPUT_DIR }}/problem-2-graph-without-class.tikz
+            - |
+              {{ .COMPILER }} {{ .FLAGS }}              \
+                -output-directory="./{{ .OUTPUT_DIR }}" \
+                {{ .INPUT_DIR }}/problem-2-graph-with-class.tikz
+            - |
+              {{ .COMPILER }} {{ .FLAGS }}              \
+                -output-directory="./{{ .OUTPUT_DIR }}" \
+                {{ .INPUT_DIR }}/problem-3-graph-with-points.tikz
+            - |
+              {{ .COMPILER }} {{ .FLAGS }}              \
+                -output-directory="./{{ .OUTPUT_DIR }}" \
+                {{ .INPUT_DIR }}/problem-4-graph-with-class-0.tikz
     
     cleanup:
         vars:

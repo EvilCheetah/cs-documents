@@ -1,0 +1,53 @@
+\item[\textbf{Problem 2}]
+\textbf{Draw} (on graph or engineering paper or by using software) the decision
+boundary encoded by this AN. Be sure to indicate the ``font'' (Class 1) side of
+the boundary.
+
+\Solution
+
+To identify the slope, we start from the general form of an
+$N$-dimensional hyperplane:
+
+\begin{alignat*}{2}
+                & \quad & w_{0}x_{0} + w_{1}x_{1} + w_{2}x_{2}               &= 0                                   \\
+    \Rightarrow & \quad & 0.5 \cdot 1 + 1.0 \cdot x_{1} + (-0.3) \cdot x_{2} &= 0                                   \\
+    \Rightarrow & \quad & 0.5 + x_{1} - 0.3x_{2}                             &= 0                                   \\
+    \Rightarrow & \quad & 0.5 + x_{1}                                        &= 0.3x_{2}                            \\
+    \Rightarrow & \quad & x_{2}                                              &= \frac{x_{1}}{0.3} + \frac{0.5}{0.3} \\
+\end{alignat*}
+
+This can be plotted as follows:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-2-graph-without-class.pdf}
+    \captionof{figure}{Decision Boundary for the Artificial Neural Unit}
+    \label{figure:slope-for-an-unit}
+\end{minipage}
+
+To identify the classification side, we choose a test point on one side of the
+boundary and evaluate the \emph{net} (step) function. For example, take $(0,0)$
+as a random test point. Substituting into the hyperplane equation gives:
+
+\begin{alignat*}{2}
+                & \quad & 0.5 + x_{1} - 0.3x_{2} &= 0.5 + 0 - 0.3 \cdot 0 \\
+    \Rightarrow & \quad &                        &= 0.5                   \\
+\end{alignat*}
+
+Since $\textit{net} = 0.5 \ge 0$, the point $(0,0)$ is classified as Class 1.
+Therefore, the Class 1 (``font'') side of the decision boundary is the half-plane
+where
+\[
+0.5 + x_{1} - 0.3x_{2} \ge 0
+\quad \Longleftrightarrow \quad
+x_{2} \le \frac{x_{1}}{0.3} + \frac{0.5}{0.3}.
+\]
+
+A plot of the boundary with the Class 1 side indicated is shown below:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-2-graph-with-class.pdf}
+    \captionof{figure}{Decision boundary with the Class 1 side indicated}
+    \label{figure:slope-for-an-unit-with-classification}
+\end{minipage}

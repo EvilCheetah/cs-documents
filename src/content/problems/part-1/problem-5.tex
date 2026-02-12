@@ -1,0 +1,27 @@
+\item[\textbf{Problem 5}]
+Assume that the AN's classification of each of the points above is correct.
+\textbf{List} a new labeled data item which, if added to the data set above,
+would necessarily cause the AN to misclassify at least one data item. (That is,
+given this new data item, there would be no set of possible weights that would
+allow this AN to correctly classify all data items.) \textbf{Explain} why the AN
+would necessarily misclassify at least one data item.
+
+\Solution
+
+After inspecting the plotted data points, we can see that the existing points
+form a cluster of \textbf{Class 1} items. To solve the problem, we need to
+introduce a new point that breaks this pattern, making it impossible to draw a
+single straight line that separates two classes. A reliable method is to choose
+a point that lies on the line segment between two existing points. I selected
+the existing points $(0.0, 0.0)$ and $(1.0, 0.2)$. If we place a new
+\textbf{Class 0} point at their midpoint, $(0.5, 0.1)$, we create a conflict.
+This arrangement results in two Class 1 points flanking a Class 0 point on the
+same line. No single decision boundary can isolate the middle point from the
+outer two without misclassifying at least one of them.
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-4-graph-with-class-0.pdf}
+    \captionof{figure}{Decision boundary with the Class 1 cluster and an outlier within it}
+    \label{figure:slope-graph-with-classified-points-and-an-outlier}
+\end{minipage}

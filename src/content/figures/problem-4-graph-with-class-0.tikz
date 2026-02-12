@@ -1,0 +1,57 @@
+\documentclass[tikz,border=5pt]{standalone}
+
+
+\usepackage{pgfplots}
+
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{intersections}
+
+
+\begin{document}
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis equal,
+            axis lines = middle,
+            xlabel = {$x_{1}$},
+            ylabel = {$x_{2}$},
+            legend pos = south east,
+            xmin = -5, xmax = 5,
+            ymin = -4, ymax = 4,
+            scaled y ticks = false,
+            grid= major,
+            legend style={font=\footnotesize},
+        ]
+            % Classification Slope Graph
+            \addplot
+                [
+                    samples=100, 
+                    color=red,
+                    name path = slope
+                ]
+                {x / 0.3 + 0.5 / 0.3};
+
+            \draw[blue, thick, -stealth] (-0.5, 0) -- (4.5, -1.5) 
+                node[pos=0.6, sloped, below, blue] {Class 1};
+
+            \addlegendentry{%
+                Slope
+                (\(x_{2} = \frac{x_{1}}{0.3} + \frac{0.5}{0.3}\))
+            };
+
+            \addplot[only marks, mark=*, color=orange] coordinates {
+                (0.5, 0.1)
+            };
+            \addlegendentry{Class 0 Data}
+
+            \addplot[only marks, mark=*, color=green!60!black] coordinates {
+                (1.0, 0.2)
+                (0.0, 0.0)
+                (-0.1, -0.5)
+                (1.7, 0.1)
+                (1.8, -1.4)
+            };
+            \addlegendentry{Class 1 Data}
+        \end{axis}
+    \end{tikzpicture}
+\end{document}

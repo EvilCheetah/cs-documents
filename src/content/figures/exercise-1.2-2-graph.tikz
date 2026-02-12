@@ -20,7 +20,7 @@
             % Insertion Sort Graph
             \addplot
                 [
-                    domain=0:50, 
+                    domain=-50:50, 
                     samples=100, 
                     color=red,
                     name path = insertion
