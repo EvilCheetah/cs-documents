@@ -1,5 +1,13 @@
 \item[\textbf{Problem 7}]
-Description...
+Bob is assigned a task to design a way to allow encryption of files stored in
+the system: all files are stored in an encrypted form. If a block of a file is
+requested, the system should retrieve the block, decrypt it and return the
+plaintext to the host. Similarly, if a host writes a block to the storage
+system, the system should retrieve the right keying material, encrypt the block,
+and only save the ciphertext on disk. Consider the modes of operations discussed
+in class (i.e., ECB, CBC, CFB, CTR). Which one should be used in terms of
+read/write efficiency? Why? (You do NOT need to consider the key storage
+problem.)
 
 \Solution
 
