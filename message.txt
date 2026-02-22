@@ -1,0 +1,22 @@
+This is a test file!
+Some magic words:
+signature
+hash-collision
+asymmetric-key
+spoofing
+backdoor
+steganography
+encryption
+certificate
+malware
+buffer-overflow
+air-gapped
+cyberattack
+penetration
+authentication
+privilege
+MITM
+firewall
+zero-day
+security-token
+session
