@@ -10,4 +10,12 @@ Explain why the following attempt cannot ensure integrity.
 
 \Solution
 
-Solution...
+From the lecture notes, the \textbf{residue} ($R$) is the final output block of
+the encryption computation, or the last chaining value. However, sending this
+residue along with the ciphertext does \emph{not} guarantee integrity, because
+the residue is not a secure message authentication code (MAC) in general. In
+particular, after observing valid transmissions, an attacker can construct a
+different ciphertext($C'$) that decrypts to a different plaintext ($P'$) but
+still produces a residue ($R$) that matches what the receiver recomputes.
+Therefore, the receiver may accept a modified message, and never know it was
+modified, so integrity is not guaranteed by this diagram.
