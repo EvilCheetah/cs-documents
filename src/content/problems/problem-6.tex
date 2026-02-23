@@ -9,4 +9,32 @@ $K$. Answering two questions:
 
 \Solution
 
-Solution...
+\begin{enumerate}
+    \item \textbf{Symmetric Key Cryptography (MAC)}
+    \begin{itemize}
+        \item A and B share a secret key $K$ and agree on a Message
+        Authentication Code (MAC) algorithm.
+
+        \item A sends to B the plaintext message alongside the generated MAC
+        tag. This tag is produced by passing the message and the shared key $K$
+        through the chosen MAC algorithm.
+
+        \item When B receives the message, B recomputes the MAC of the received
+        plaintext using the same algorithm and shared key $K$. B then compares
+        the computed MAC to the received MAC. If they match, integrity and
+        authenticity are verified.
+    \end{itemize}
+
+    \item \textbf{Hash-based Message Authentication Code (HMAC)}
+    \begin{itemize}
+        \item A and B use a public cryptographic hash function $H$ (such as
+        SHA-256) combined with their shared secret key $K$ via the HMAC.
+
+        \item Upon sending, A computes the HMAC tag ($H(K | M)$). A appends this
+        tag to the message.
+
+        \item Upon receiving, B recomputes the HMAC of the received message
+        using $K$ and $H$, then compares the result against the received tag to
+        verify the message's origin and integrity.
+    \end{itemize}
+\end{enumerate}
