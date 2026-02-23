@@ -1,10 +1,71 @@
 \item[\textbf{Problem 5}]
 Suppose the sub-key generation function is to reverse all the bits of the key
 $K$ (e.g., $0111 \rightarrow 1110$), and the scrambling function is $f = M
-\ {\XOR}\  K'$, where $M$ is the second half of input bits and $K'$ is the
+{\XOR} K'$, where $M$ is the second half of input bits and $K'$ is the
 sub-key (i.e., the reverse of the original key $K$). Now given the original
 $K=0011$, and input bits $1111\ 0000$, compute the output of the Feistel Cipher.
 
 \Solution
 
-Solution...
+Recall, the Feistel cipher looks as follows:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{feistel-cipher.pdf}
+    \captionof{figure}{Feistel Cipher Diagram}
+\end{minipage}
+
+We have the following inputs:
+\begin{alignat*}{2}
+    \text{Input} &= 1111\ 0000                 \\
+    K            &= 0011                       \\
+    f            &= M \XOR K'                  \\
+    M            &= \text{Right}(\text{Input}) \\
+\end{alignat*}
+
+Based on the problem description, we have:
+\begin{alignat*}{2}
+    K'    &= 1100 \\
+    M     &= 0000 \\
+    R_{0} &= M    \\
+    L_{0} &= 1111 \\
+\end{alignat*}
+
+Therefore, we can draw the following diagram:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-step-1.pdf}
+    \captionof{figure}{Substituting into $F_{k_1}$}
+\end{minipage}
+
+And here is a step by step solution:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-step-2.pdf}
+    \captionof{figure}{Propagating values for $L_1$ and $R_1$ by following the diagram}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-step-3.pdf}
+    \captionof{figure}{Plugging in the values for $L_0$, $R_0$, and $F_{k_1}$}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-step-4.pdf}
+    \captionof{figure}{SimpSimplifying $F_{k_1}$, propagating $L_1$, and simplifying the calculation for $R_1$}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-step-5.pdf}
+    \captionof{figure}{Simplifying the result for $R_1$}
+\end{minipage}
+
+Here is the final answer:
+\[
+    \text{Output} = 0000\ 0011
+\]
