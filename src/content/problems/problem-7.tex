@@ -11,4 +11,33 @@ problem.)
 
 \Solution
 
-Solution...
+\Solution
+
+The most suitable mode for this storage system is \textbf{CTR (Counter) mode},
+primarily because it enables \textbf{efficient random-access reads and writes}.
+In CTR mode, each block is encrypted as
+\[
+    C_i = M_i \oplus E_k(\text{nonce} + \text{counter}_i),
+\]
+Because every block uses an independent keystream block derived from its
+specific counter value, the system can \textbf{encrypt and decrypt any requested
+block independently}, without processing other blocks.
+
+By contrast:
+\begin{itemize}
+  \item \textbf{ECB} is unsuitable because identical plaintext blocks produce
+  identical ciphertext blocks, leaking patterns across the file.
+
+  \item \textbf{CBC} is inefficient for random access: decrypting block $i$
+  requires ciphertext block $i-1$, and modifying a block typically forces
+  recomputation (and re-encryption) of subsequent blocks if the chaining
+  changes.
+
+  \item \textbf{CFB} similarly introduces sequential dependence, making
+  random-access decryption and parallelization less efficient than CTR.
+\end{itemize}
+
+Since CTR mode handles blocks independently, efficiency can be further improved
+through \textbf{parallelization}, by offloading computations to multiple threads
+or processes. In other words, CTR provides the best read/write performance for
+an encrypted block storage design.
