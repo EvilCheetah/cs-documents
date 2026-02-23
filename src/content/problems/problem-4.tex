@@ -1,9 +1,35 @@
 \item[\textbf{Problem 4}]
 Alice designs a new double-DES scheme. The scheme will first DES-encrypt a
-message using $K_1$ to get an intermediate ciphertext, then DES-\textbf{decrypt}
-the intermediate ciphertext using $K_2$ to get the final ciphertext.
-Is there any vulnerability in Alice's design?
+message using $K_{1}$ to get an intermediate ciphertext, then
+DES-\textbf{decrypt} the intermediate ciphertext using $K_{2}$ to get the final
+ciphertext. Is there any vulnerability in Alice's design?
 
 \Solution
 
-Solution...
+Similarly to Problem 2, Alice's design is highly vulnerable to the
+meet-in-the-middle attack.
+The ciphertext is:
+\[
+    C = D_{K_{2}}(E_{K_{1}}(P)).
+\]
+
+While the total key space is $112$ bits, the effective security of this scheme
+is reduced to roughly $2^{57}$ operations, much like standard double-DES. This
+vulnerability exists because the algebraic structure allows an attacker to
+isolate the intermediate value $I$. 
+
+By rearranging the encryption equation, we see that $E_{K_{2}}(C) = E_{K_{1}}(P)$.
+An attacker can:
+\begin{enumerate}
+    \item Encrypt the plaintext $P$ forward using all possible values of $K_{1}$
+          ($I = E_{K_{1}}(P)$) and store the results in a table.
+    
+    \item Encrypt the ciphertext $C$ "backward" (since the inverse of Alice's
+          second step, $D_{K_{2}}$, is $E_{K_{2}}$) using all possible values of
+          $K_{2}$ ($I = E_{K_{2}}(C)$).
+\end{enumerate}
+
+Instead of an exhaustive search of $2^{112}$ keys, the attacker only needs to
+perform two separate searches of $2^{56}$ operations to find a collision at $I$.
+Ultimately, replacing the second encryption with a decryption does not mitigate
+the fundamental vulnerability that allows the keys to be attacked independently.
