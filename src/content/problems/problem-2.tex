@@ -3,4 +3,30 @@ Explain meet-in-the-middle attacks against double-DES.
 
 \Solution
 
-Solution...
+A meet-in-the-middle attack on double-DES aims to recover the two DES keys
+$K_{1}$ and $K_{2}$ given one or more known plaintext--ciphertext pairs
+$(P,\ C)$, where
+\[
+    C = E_{K_{2}}(E_{K_{1}}(P)).
+\]
+The attack proceeds as follows:
+\begin{enumerate}
+    \item \textbf{Forward Phase:} Encrypt the known plaintext $P$ using all
+          possible $2^{56}$ values for $K_{1}$. Store the resulting intermediate
+          values $I$ (where $I = E_{K_{1}}(P)$) and their corresponding $K_{1}$
+          in a lookup table.
+    
+    \item \textbf{Backward Phase:} Decrypt the corresponding known ciphertext
+          $C$ using all possible $2^{56}$ values for $K_{2}$. This produces a
+          second set of intermediate values $I'$ (where $I' = D_{K_{2}}(C)$).
+    
+    \item \textbf{The Meet:} As each $I'$ is calculated, check the sorted lookup
+          table from Step 1. If a match is found ($I = I'$), the keys $(K_{1},
+          K_{2})$ form a candidate key pair.
+    
+    \item \textbf{Verification:} Because the block size (64 bits) is much
+          smaller than the combined key space, a single $(P,\ C)$ pair will
+          generate many false positive candidate pairs. Test these candidates on
+          a second known $(P,\ C)$ pair; the pair that successfully encrypts $P$
+          to $C$ is the correct $(K_1, K_2)$.
+\end{enumerate}
