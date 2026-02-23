@@ -1,0 +1,53 @@
+\subsection{Basic Encryption and Decryption}
+To encrypt the file, I used the following command:
+
+\begin{center}
+    \begin{minipage}{0.8\linewidth}
+        \begin{lstlisting}[language=bash, caption={Encrypting a file using AES-256-CBC}]
+            openssl enc          \
+                -aes-256-cbc     \
+                -salt            \
+                -pbkdf2          \
+                -iter 10000      \
+                -in message.txt  \
+                -out message.enc
+        \end{lstlisting}
+    \end{minipage}
+\end{center}
+
+The following key was used when prompted:
+\code{NcbSXXuJqXB6Tz1Xg3uAbUqFOwcfqG31yLEEs88S}.
+
+To decrypt the file, the following command was used:
+
+\begin{center}
+    \begin{minipage}{0.8\linewidth}
+        \begin{lstlisting}[language=bash, caption={Decrypting the file}]
+            openssl enc          \
+                -d               \
+                -aes-256-cbc     \
+                -pbkdf2          \
+                -in message.enc  \
+                -out message.dec
+        \end{lstlisting}
+    \end{minipage}
+\end{center}
+
+The same key was entered when prompted.
+
+Below is a screenshot showing the execution of these commands:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-8-step-1-1.png}
+    \captionof{figure}{Task 1 -- Basic Encryption and Decryption -- Result}
+\end{minipage}
+
+The following image shows the comparison between the decrypted file
+(\code{message.dec}) and the original (\code{message.txt}):
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-8-step-1-2.png}
+    \captionof{figure}{Verification of file integrity using the \code{diff} command}
+\end{minipage}

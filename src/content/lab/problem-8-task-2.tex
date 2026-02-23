@@ -1,0 +1,68 @@
+\subsection{Encrypt and Decrypt Using a Key File}
+To create a random key file, the following command was used:
+
+\begin{center}
+    \begin{minipage}{0.8\linewidth}
+        \begin{lstlisting}[language=bash, caption={Generating a 32-byte random key file}]
+            openssl rand -base64 32 > key.bin
+        \end{lstlisting}
+    \end{minipage}
+\end{center}
+
+Below is a screenshot showing the execution of this command:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-8-step-2-1.png}
+    \captionof{figure}{Task 2 -- Key Creation -- Result}
+\end{minipage}
+
+To encrypt the file using the generated key, I used the following command:
+
+\begin{center}
+    \begin{minipage}{0.8\linewidth}
+        \begin{lstlisting}[language=bash, caption={Encrypting a file using AES-256-CBC and a key file}]
+            openssl enc               \
+                -aes-256-cbc          \
+                -salt                 \
+                -pbkdf2               \
+                -iter 10000           \
+                -in message.txt       \
+                -out message.file.enc \
+                -pass file:key.bin
+        \end{lstlisting}
+    \end{minipage}
+\end{center}
+
+To decrypt the file, the following command was used:
+
+\begin{center}
+    \begin{minipage}{0.8\linewidth}
+        \begin{lstlisting}[language=bash, caption={Decrypting the file using a key file}]
+            openssl enc               \
+                -d                    \
+                -aes-256-cbc          \
+                -pbkdf2               \
+                -in message.file.enc  \
+                -out message.file.dec \
+                -pass file:key.bin
+        \end{lstlisting}
+    \end{minipage}
+\end{center}
+
+Below is a screenshot showing the execution of these commands:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-8-step-2-2.png}
+    \captionof{figure}{Task 1 -- Encryption and Decryption with Key File -- Result}
+\end{minipage}
+
+The following image shows the comparison between the decrypted file
+(\code{message.file.dec}) and the original (\code{message.txt})::
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-8-step-2-3.png}
+    \captionof{figure}{Verification of file integrity using the \code{diff} command}
+\end{minipage}
