@@ -13,6 +13,7 @@ tasks:
               {{ .COMPILER }} {{ .FLAGS }} -jobname="{{ .JOBNAME }}"
 
     build:
+        deps: [compile:graphics]
         dir: ./src/
         vars:
             FLAGS: -pdf
@@ -36,4 +37,37 @@ tasks:
               {{ .COMPILER }} {{ .FLAGS }} \
               -output="{{ .JOBNAME }}.tex" \
               {{ .ENTRYPOINT }}
+
+    compile:graphics:
+        dir: ./src/
+        vars:
+            FLAGS: -pdf
+            INPUT_DIR: content/figures
+            OUTPUT_DIR: content/figures
+        deps:
+            - task: compile:individual-graphic
+              vars: { FILE: feistel-cipher.tex }
+            - task: compile:individual-graphic
+              vars: { FILE: problem-5-step-1.tex }
+            - task: compile:individual-graphic
+              vars: { FILE: problem-5-step-2.tex }
+            - task: compile:individual-graphic
+              vars: { FILE: problem-5-step-3.tex }
+            - task: compile:individual-graphic
+              vars: { FILE: problem-5-step-4.tex }
+            - task: compile:individual-graphic
+              vars: { FILE: problem-5-step-5.tex }
+
+    compile:individual-graphic:
+        internal: true
+        dir: ./src/
+        vars:
+            FLAGS: -pdf
+            INPUT_DIR: content/figures
+            OUTPUT_DIR: content/figures
+        cmds:
+            - |
+              {{ .COMPILER }} {{ .FLAGS }}              \
+                -output-directory="./{{ .OUTPUT_DIR }}" \
+                {{ .INPUT_DIR }}/{{ .FILE }}
               
