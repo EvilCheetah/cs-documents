@@ -1,0 +1,21 @@
+% Title Format Configuration
+\makeatletter
+    \renewcommand{\maketitle}
+    {%
+            \setlength{\parskip}{1.0\baselineskip}
+            \setlength{\parindent}{0pt}
+
+            \@author
+
+            \InstructorName
+
+            \CourseName, Section \SectionNumber
+
+            \@date
+
+            \begin{center}
+                \@title
+            \end{center}
+    }
+
+\makeatother

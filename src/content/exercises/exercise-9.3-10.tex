@@ -1,0 +1,42 @@
+\item[\textbf{Exercise 9.3-10}]
+Let $X[1 : n]$ and $Y[1 : n]$ be two arrays, each containing $n$ numbers already
+in sorted order. Give an $O(\lg n)$-time algorithm to find the median of all
+$2n$ elements in arrays $X$ and $Y$. Assume that all $2n$ numbers are distinct.
+
+\Solution
+
+\begin{codebox}
+\Procname{$\proc{TwoArrayMedian}(X, Y, n)$}
+\li $median \gets \proc{FindMedian}(X, Y, n, 1, n)$
+\li
+\li \If $median \isequal \id{NotFound}$ \Then
+\li     $median \gets \proc{FindMedian}(Y, X, n, 1, n)$
+    \End
+\li
+\li \Return $median$
+\end{codebox}
+
+
+\begin{codebox}
+\Procname{$\proc{FindMedian}(X,Y,n,low,high)$}
+\li \If $low > high$ \Then
+\li     \Return $\id{NotFound}$
+    \End
+\li
+\li $k \gets \lfloor(low + high) / 2 \rfloor$
+\li
+\li \If $k \isequal n \text{ and } A[n] \le B[1]$ \Then
+\li     \Return $A[n]$
+    \End
+\li
+\li \If $k < n \text{ and } B[n - k] \le A[k] \text{ and } A[k] \le B[n - k + 1]$ \Then
+\li     \Return $A[k]$
+    \End
+\li
+\li \If $A[k] > B[n - k + 1]$ \Then
+\li     \Return $\proc{FindMedian}(A, B, n, low, k - 1)$
+    \End
+\li
+\li \Return $\proc{FindMedian}(A, B, n, k + 1, high)$
+\end{codebox}
+

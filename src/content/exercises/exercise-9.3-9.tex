@@ -1,0 +1,23 @@
+\item[\textbf{Exercise 9.3-9}]
+Describe an $O(n)$-time algorithm that, given a set $S$ of $n$ distinct numbers
+and a positive integer $k \le n$, determines the $k$ numbers in $S$ that are
+closest to the median of $S$.
+
+\Solution
+
+\begin{itemize}
+    \item Use \textsc{Select} to find the median $m$ of $S$.
+    
+    \item For each element $x \in S$, compute its distance from the median:
+    \[
+        d(x) = |x - m|.
+    \]
+
+    \item Use \textsc{Select} again on the set of distances $\{d(x) : x \in S\}$
+    to find the $k$th smallest distance, say $\delta$.
+
+    \item Output all elements whose distance from the median is $\le \delta$ to
+    make a total of $k$ elements.
+\end{itemize}
+
+Each step takes linear time, so the overall running time is $O(n)$.
