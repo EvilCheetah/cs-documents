@@ -1,6 +1,30 @@
 \item[\textbf{Problem 12}]
 
-Lab Description
+In this lab exercise, you will work with a BMP image file named
+\textbf{pic\_original.bmp} and explore how encryption affects visual data. Your
+task is to encrypt the image using OpenSSL in both ECB (Electronic Code Book)
+and CBC (Cipher Block Chaining) modes. For example, you might use commands like
+\textbf{openssl enc -aes-256-ecb -in pic\_original.bmp -out pic\_ecb.enc} for
+ECB mode and a similar command with \textbf{-aes-256-cbc} for CBC mode.
+
+Because BMP files rely on the first 54 bytes as header information to display
+correctly, you must extract the header from the original image and combine it
+with the encrypted data: extract the header with \textbf{head -c 54
+pic\_original.bmp $>$ header}, extract the encrypted body from byte 55 onward
+using \textbf{tail -c +55 pic\_ecb.enc $>$ body}, and then concatenate them via
+\textbf{cat header body $>$ pic\_ecb.bmp} (repeat for the CBC-encrypted file).
+Finally, open the resulting BMP files using an image viewer and observe any
+visible patterns or clues that might reveal aspects of the original picture.
+Please submit screenshots of your terminal commands, the resulting images, and a
+brief report discussing your observations and any differences between the ECB
+and CBC encryption outcomes.
+
+For Linux and macOS, you can directly use the head and tail commands. For
+Windows users, you have two options: either run these commands via \textbf{WSL}
+(Windows Subsystem for Linux) or use a hex editor (such as HxD) to manually copy
+the first 54 bytes from \textbf{pic\_original.bmp} and overwrite the first 54
+bytes in each encrypted file. Then, save the modified files as
+\textbf{pic\_ecb.bmp} and \textbf{pic\_cbc.bmp}.
 
 \Solution
 
