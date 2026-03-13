@@ -5,4 +5,19 @@ hash of that message. Explain the vulnerability of Bob's design.
 
 \Solution
 
-Problem 2 Solution...
+There are significant vulnerabilities in this approach, primarily because an
+unkeyed hash function cannot guarantee data integrity against an active
+attacker:
+\begin{enumerate}
+    \item \textbf{Origin Authentication}: Bob's scheme provides no way to verify
+    the identity of the sender. Because no secret key is required to generate
+    the hash, any attacker can create a message-and-hash pair from scratch and
+    send it to the receiver while masquerading as a legitimate user.
+    
+    \item \textbf{Integrity}: Since SHA-256 is a public unkeyed algorithm, an
+    active attacker can intercept the message in transit, alter its contents,
+    recalculate the SHA-256 hash for the modified message, and forward the new
+    payload to the receiver. The receiver will compute the hash, see that it
+    matches the appended hash, and incorrectly assume the message was
+    unmodified.
+\end{enumerate}
