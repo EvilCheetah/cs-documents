@@ -1,7 +1,7 @@
 \item[\textbf{Problem 11}]
 Alice designs a double-RSA cipher. She first generates two secret primes $p$ and
 $q$, and compute $n=p*q$, then choose two public encryption exponents $e_1$ and
-$e_2$ that are relatively prime to $\o(n)$. So $\langle e_1, e_2, n \rangle$
+$e_2$ that are relatively prime to $\phi(n)$. So $\langle e_1, e_2, n \rangle$
 becomes the public key. She tells people to encrypt message $M$ by computing
 $C_1=M^{e_1} \bmod n$ and then $C= C_1^{e_2} \bmod n$, finally sending just $C$
 to her.
