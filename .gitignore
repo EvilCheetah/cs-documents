@@ -22,3 +22,6 @@
 
 # Generated Files via Conversion
 /src/assets/*.jpg
+
+# Python Cache
+__pycache__/
