@@ -6,4 +6,15 @@ with a known key to the public. Explain the vulnerability of Bob's design.
 
 \Solution
 
-Problem 3 Solution...
+The primary vulnerability is that the scheme lacks a secret element (such as a
+private key or a shared secret) to prove the message's origin.
+
+Because the AES key is public, an attacker can perform a man-in-the-middle
+attack by decrypting the message, altering the content, and computing a new
+SHA-256 hash for the modified data. They can then re-encrypt the new
+\code{message + hash} bundle using the public key.
+
+Since SHA-256 is a public algorithm and the AES key is known, the receiver's
+integrity check will succeed even if the message was changed. This scheme fails
+to provide authenticity, which is a prerequisite for true integrity in an
+adversarial environment.
