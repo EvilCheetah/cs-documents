@@ -5,6 +5,16 @@ vars:
     JOBNAME: Homework 3
 
 tasks:
+    graphics:convert:
+        dir: ./src/assets/
+        deps:
+            - task: graphic:convert
+              vars: { SRC: 'problem-12-pic-original.bmp', DEST: 'problem-12-pic-original.jpg' }
+            - task: graphic:convert
+              vars: { SRC: 'problem-12-pic-cbc.bmp', DEST: 'problem-12-pic-cbc.jpg' }
+            - task: graphic:convert
+              vars: { SRC: 'problem-12-pic-ecb.bmp', DEST: 'problem-12-pic-ecb.jpg' }
+
     cleanup:
         vars:
             FLAGS: -c
@@ -14,6 +24,7 @@ tasks:
 
     build:
         dir: ./src/
+        deps: [graphics:convert]
         vars:
             FLAGS: -pdf
             ENTRYPOINT: main.tex
@@ -37,3 +48,10 @@ tasks:
               -output="{{ .JOBNAME }}.tex" \
               {{ .ENTRYPOINT }}
               
+    graphic:convert:
+        internal: true
+        dir: ./src/assets/
+        requires:
+            vars: [SRC, DEST]
+        cmds:
+            - magick -define bmp:ignore-filesize=true {{ .SRC }} {{ .DEST }}

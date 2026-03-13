@@ -19,3 +19,6 @@
 
 # Input
 *.example
+
+# Generated Files via Conversion
+/src/assets/*.jpg
