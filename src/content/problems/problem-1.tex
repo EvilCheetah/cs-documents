@@ -3,4 +3,35 @@ What are the properties of hash functions?
 
 \Solution
 
-Problem 1 Solution...
+Hash function has the following properties:
+\begin{enumerate}
+    \item \underline{Performance}: Easy to compute $H(m)$ \\
+          \textit{Own Explanation}: It should be efficient and not
+          computationally intensive to compute.
+    
+    \item \underline{One-Way}: Given $H(m)$ but not $m$, it's
+          \textbf{computationally infeasible} to find $m$
+          \textit{Own Explanation}: The practical approach is essentially brute
+          force (guess messages and hash them) until a match is found.
+
+    \item \underline{Weak Collision Resistance}: Given $H(m)$, it's
+          \textbf{computationally infeasible} to find $m'$ such that $H(m') =
+          H(m)$
+          \textit{Own Explanation}: If we already have a valid message and its
+          hash, we should not be able to find a second, altered, message that
+          produces that exact same hash.
+
+    \item \underline{Strong Collision Resistance}: \textbf{computationally
+          infeasible} to find $m_{1}$, $m_{2}$ such that $H(m_{1}) = H(m_{2})$
+          \textit{Own Explanation}: Due to fixed output lengths, collisions can
+          mathematically exist, but it should be virtually impossible to find
+          two different messages that result in the same hash.
+\end{enumerate}
+
+\begin{tcolorbox}[
+    colback=black!5!white,
+    colframe=black!75!white,
+    title=Note
+]
+    The following question is identical to the one in Homework 2.
+\end{tcolorbox}
