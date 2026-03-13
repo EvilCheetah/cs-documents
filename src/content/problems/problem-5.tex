@@ -23,4 +23,48 @@ following hashes.
 
 \Solution
 
-Problem 5 Solution...
+\lstinputlisting
+    [
+        style=moderncpp,
+        caption={SHA1 Function, located in \code{sha1.h}}
+    ]
+    {../../code/sha1.h}
+
+\lstinputlisting
+    [
+        style=moderncpp,
+        caption={Main function, located in \code{main.cpp}}
+    ]
+    {../../code/main.cpp}
+
+Here are the screenshots proving the successful compilation of the program on a
+Linux machine using the \code{g++} compiler, alongside the correct output of the
+hashes.
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-compilation-and-output.png}
+    \captionof{figure}{Compilation of SHA1 program with specified inputs of
+        \code{OU}, \code{Computer Science}, and \code{Crypto}
+    }
+\end{minipage}
+
+Here are the screenshots proving that the implemented algorithm correctly
+computes the hashes of the specified inputs and matches the ones
+calculated at \url{http://www.sha1-online.com/}.
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-1-ou-hash.png}
+    \captionof{figure}{Correct calculation of hash for \code{OU}}
+\end{minipage}
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-2-computer-science-hash.png}
+    \captionof{figure}{Correct calculation of hash for \code{Computer Science}}
+\end{minipage}
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-5-3-crypto-hash.png}
+    \captionof{figure}{Correct calculation of hash for \code{Crypto}}
+\end{minipage}
