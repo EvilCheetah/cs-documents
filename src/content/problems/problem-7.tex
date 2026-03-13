@@ -3,4 +3,28 @@ Prove that $a = n - 1$ is always a solution to $a^{2} \equiv 1 \bmod n$.
 
 \Solution
 
-Problem 7 Solution...
+We want to show that if \(a = n-1\), then
+\[
+    a^2 \equiv 1 \bmod n.
+\]
+Substituting \(a = n-1\), it suffices to prove that
+\[
+    (n-1)^2 \equiv 1 \bmod n.
+\]
+
+Expanding the square gives
+\[
+    (n-1)^2 = n^2 - 2n + 1.
+\]
+Now reduce modulo \(n\):
+\[
+    n^2 - 2n + 1 \equiv 0 - 0 + 1 \equiv 1 \bmod n,
+\]
+since both \(n^2\) and \(2n\) are multiples of \(n\).
+
+Therefore,
+\[
+    (n-1)^2 \equiv 1 \bmod n,
+\]
+so \(a = n-1\) is always a solution to \(a^2 \equiv 1 \bmod n\).
+\(\blacksquare\)
