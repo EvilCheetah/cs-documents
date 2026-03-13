@@ -13,4 +13,42 @@ code to compute the following. Submit your code and results.
 
 \Solution
 
-Problem 6 Solution...
+\lstinputlisting
+    [
+        style=modernpython,
+        caption={GCD Functions, located in \code{gcd.py}}
+    ]
+    {../../code/gcd/gcd.py}
+
+\lstinputlisting
+    [
+        style=modernpython,
+        caption={Main Function, located in \code{main.py}}
+    ]
+    {../../code/gcd/main.py}
+
+
+Here is a screenshot demonstrating the successful execution and correct output 
+of the program:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-6-terminal-commands.png}
+    \captionof{figure}{Execution of Python Script}
+\end{minipage}
+
+\begin{tcolorbox}[ colback=black!5!white, colframe=black!75!white, title=Note ]
+    Python supports arbitrary-precision integers (bigints) natively, allowing
+    for seamless large-number manipulation. Similarly, Java provides a built-in
+    \code{BigInteger} class which facilitates a similarly straightforward
+    implementation. On the other hand, languages without native bigint support,
+    such as C or C++, would require a custom library or class and additional
+    logic to handle such values correctly.
+\end{tcolorbox}
+
+\begin{tcolorbox}[ colback=black!5!white, colframe=black!75!white, title=Note ]
+    The \href{https://pypi.org/project/tabulate/}{\code{tabulate}} library was 
+    used to generate the formatted output tables. If you intend to run this 
+    script locally, please ensure the package is installed in your Python 
+    environment (e.g., via \code{pip install tabulate}).
+\end{tcolorbox}
