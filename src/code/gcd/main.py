@@ -4,7 +4,7 @@
 @studentID  113-683-484
 @course     CS 5173 - Computer Security
 @date       Mar 13th, 2026
-@brief      Main Functions
+@brief      Main Function
 """
 
 
