@@ -1,13 +1,53 @@
 \item[\textbf{Problem 4}]
 A company is selling an artifact worth millions of dollars. Many interested
 buyers are in the bidding process, which works as follows. Each buyer sends the
-information of his/her final number (e.g., \FormatCurrency{1,000,000}) to the company to
-show his/her commitment. And the number must be kept confidential from other
-buyers and even the company before the deadline. After the deadline, all numbers
-are released to all buyers and the company, then the buyer with the highest
-number wins. Design a HASH FUNCTION based scheme to secure the bidding process.
-Describe steps a buyer and/or the company should do.
+information of his/her final number (e.g., \FormatCurrency{1,000,000}) to the
+company to show his/her commitment. And the number must be kept confidential
+from other buyers and even the company before the deadline. After the deadline,
+all numbers are released to all buyers and the company, then the buyer with the
+highest number wins. Design a HASH FUNCTION based scheme to secure the bidding
+process. Describe steps a buyer and/or the company should do.
+
 
 \Solution
 
-Problem 4 Solution...
+To ensure the bidding process is secure, confidential, and verifiable, the
+system should implement a Cryptographic Commitment Scheme consisting of a
+``Commit'' phase and a ``Reveal'' phase.
+
+\subsection{Phase 1: Commit}
+
+\begin{enumerate}
+    \item An interested buyer decides on their bid amount ($B$). They then
+    generate a large, cryptographically secure random number, salt or nonce
+    ($K$).
+    
+    \item The buyer hashes their bid amount combined with the nonce: $C = H(B,
+    K)$. This resulting hash ($C$) is their "commitment".
+
+    \item The buyer sends only their commitment ($C$) alongside their unique
+    identification (such as, system ID, full name, driver's license) to the
+    company.
+\end{enumerate}
+
+
+\subsection{Phase 2: Reveal}
+
+\begin{enumerate}
+    \item Once the deadline passes, all buyers publicly release their original
+    plaintext bid amount ($B$) and their secret nonce ($K$) to the company and
+    all other buyers.
+
+    \item The company (and any participating buyer) verifies the bids by
+    recomputing the hash using the revealed data: $H(B, K)$
+\end{enumerate}
+
+\begin{tcolorbox}[ colback=black!5!white, colframe=black!75!white, title=Note ]
+    To ensure no bias during the selection process based on buyer
+    identification, the company could implement a blinded approach where the
+    buyer's ID is also hashed or anonymized during the Commit phase.
+    Furthermore, to protect network-level privacy, buyers could submit their
+    commitments via a reverse proxy or an anonymity network (like Tor/onion
+    routing) to hide their IP addresses, ensuring that the company cannot
+    identify or profile bidders prior to the Reveal phase.
+\end{tcolorbox}
