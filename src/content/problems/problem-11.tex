@@ -1,24 +1,96 @@
 \item[\textbf{Problem 11}]
 Alice designs a double-RSA cipher. She first generates two secret primes $p$ and
-$q$, and compute $n=p*q$, then choose two public encryption exponents $e_1$ and
-$e_2$ that are relatively prime to $\phi(n)$. So $\langle e_1, e_2, n \rangle$
+$q$, and compute $n = p * q$, then choose two public encryption exponents $e_1$
+and $e_2$ that are relatively prime to $\phi(n)$. So $\bvec{e_1, e_2, n}$
 becomes the public key. She tells people to encrypt message $M$ by computing
-$C_1=M^{e_1} \bmod n$ and then $C= C_1^{e_2} \bmod n$, finally sending just $C$
-to her.
+$C_1 = M^{e_1} \bmod n$ and then $C = C_1^{e_2} \bmod n$, finally sending just
+$C$ to her.
 
 \begin{enumerate}
     \item[a.] Show the decryption process (i.e., how Alice can obtain the
     plaintext $M$ from the final ciphertext $C$).
+
     \item[b.] Is the double-RSA cipher more secure, less secure, or just as
     secure as the regular RSA cipher with the same modulus $n$ but only one
     encryption exponent? Why?
+
     \item[c.] Charlie got Alice's instructions confused, and encrypt message $M$
     for Alice using $e_1$ and $e_2$ in the reverse order (i.e., Charlie uses
-    $C_1=M^{e_2} \bmod n$ then $C= C_1^{e_1} \bmod n$). What would happen when
-    Alice, unaware of Charlie's error, tries to decipher the ciphertext using
-    her usual procedure?
+    $C_1 = M^{e_2} \bmod n$ then $C = C_1^{e_1} \bmod n$). What would happen
+    when Alice, unaware of Charlie's error, tries to decipher the ciphertext
+    using her usual procedure?
 \end{enumerate}
 
 \Solution
 
-Problem 11 Solution...
+\subsection{Subproblem A}
+
+In order to decrypt the message from the ciphertext, Alice first needs to
+calculate $n$ and $\phi(n)$ using her secret primes $p$ and $q$:
+\begin{alignat*}{2}
+    n       &= p \cdot q          \\
+    \phi(n) &= (p - 1)(q - 1)
+\end{alignat*}
+
+The final ciphertext $C$ encrypted using the public exponents $e_1$ and $e_2$
+expands as follows:
+\begin{alignat*}{2}
+    C       &= C_{1}^{e_2}         \bmod n \\
+            &= (M^{e_{1}})^{e_{2}} \bmod n \\
+            &= M^{e_{1}e_{2}}      \bmod n
+\end{alignat*}
+
+Since both $e_1$ and $e_2$ are public, we can represent their product as a
+single public exponent $e = e_1 e_2$. Because Alice knows $\phi(n)$, she can
+calculate the corresponding private decryption exponent $d$:
+\begin{alignat*}{2}
+    d       &= e^{-1}              \bmod \phi(n) \\
+            &= (e_1 e_2)^{-1}      \bmod \phi(n)
+\end{alignat*}
+
+Based on the properties of RSA, we know that $e \cdot d \equiv 1
+\pmod{\phi(n)}$. Therefore, Alice can obtain the plaintext $M$ from the incoming
+ciphertext $C$ using the standard RSA decryption procedure:
+\begin{alignat*}{2}
+    M       &=  C^{d}              \bmod n \\
+            &= (M^{e})^{d}         \bmod n \\
+            &= M^{ed}              \bmod n \\
+            &= M^{1}               \bmod n \\
+            &= M
+\end{alignat*}
+
+
+\subsection{Subproblem B}
+
+The double-RSA cipher is just as secure as a regular RSA cipher with the same
+modulus $n$. It is neither more nor less secure. Because mathematically, the
+``double'' encryption collapses into a single standard RSA encryption. By
+computing $(M^{e_1})^{e_2} \bmod n$, you are simply performing a standard RSA
+encryption using a new public exponent where
+\[
+    e = e_1 \cdot e_2
+\]
+
+The security of RSA relies on the difficulty of factoring the modulus $n$. Since
+$n$ remains exactly the same, the fundamental mathematical hardness of the
+problem has not changed. An attacker doesn't need to break two layers of RSA;
+they just need to break one layer of RSA that happens to use a slightly larger
+public exponent.
+
+
+\subsection{Subproblem C}
+
+If Charlie encrypts in the reverse order, he first uses $e_2$ and then $e_1$.
+His math looks like this:
+
+\[
+    C_{Charlie} = (M^{e_2})^{e_1} \bmod n = M^{e_2 \cdot e_1} \bmod n
+\]
+
+Because basic multiplication is commutative, Charlie's resulting ciphertext is
+exactly identical to the ciphertext he would have generated if he had followed
+the instructions correctly.
+
+Therefore, when Alice tries to decipher it using her usual procedure, she will
+successfully recover the plaintext $M$ without ever realizing Charlie made an
+error.
