@@ -11,4 +11,24 @@ $k_2$, can the eavesdropper find out $k_2$?
 
 \Solution
 
-Problem 10 Solution...
+Since $x$ and $x'$ differ by $t$, there are only two possibilities: $x' = x + t$
+or $x' = x - t$.
+
+The eavesdropper already knows $k_1 = g^{xy} \bmod p$ and Bob's public share
+$S_B = g^y \bmod p$. They can plug these known values in to compute the two
+potential candidates for the second key ($k_2 = g^{x'y} \bmod p$):
+
+
+\textbf{Candidate 1} (if $x' = x + t$):
+\[
+    k_2 = g^{(x+t)y} = g^{xy} \cdot (g^y)^t = k_1 \cdot (S_B)^t \bmod p
+\]
+
+\textbf{Candidate 2} (if $x' = x - t$):
+\[
+    k_2 = g^{(x-t)y} = g^{xy} \cdot (g^y)^{-t} = k_1 \cdot (S_B)^{-t} \bmod p
+\]
+
+The eavesdropper calculates both candidates. To identify the real $k_2$, they
+just test which candidate successfully encrypts the known plaintext $M$ to
+produce the matching ciphertext $C$.
