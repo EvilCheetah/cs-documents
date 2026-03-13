@@ -28,4 +28,60 @@ bytes in each encrypted file. Then, save the modified files as
 
 \Solution
 
-Solution...
+The following commands were executed to perform the encryption. The 256-bit
+encryption key used for this process was:
+
+{\centering \code{Kr6XO5YCMXlLEZnmPpfK5KE0pyA2MO0Uw2CA1J3YqYA7LLMs9O}}:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-12-terminal-commands.png}
+    \captionof{figure}{Execution of OpenSSL encryption commands}
+    \label{problem-12:terminal}
+\end{minipage}
+
+Here is the original, unencrypted image for reference:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-12-pic-original.jpg}
+    \captionof{figure}{Original unencrypted image}
+    \label{problem-12:pic-original}
+\end{minipage}
+
+Here is the resulting image after encryption using Electronic Codebook (ECB)
+mode:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-12-pic-ecb.jpg}
+    \captionof{figure}{Image encrypted using ECB mode}
+    \label{problem-12:pic-ecb}
+\end{minipage}
+
+Here is the resulting image after encryption using Cipher Block Chaining (CBC)
+mode:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-12-pic-cbc.jpg}
+    \captionof{figure}{Image encrypted using CBC mode}
+    \label{problem-12:pic-cbc}
+\end{minipage}
+
+\vspace{1em}
+\textbf{Analysis:}
+
+As observed in Figure \ref{problem-12:pic-ecb}, encrypting the image using ECB
+mode fails to mask the visual patterns of the original file. This occurs because
+ECB mode is deterministic; it encrypts identical plaintext blocks into identical
+ciphertext blocks. Consequently, regions of uniform color in the original image
+translate directly into repeating ciphertext blocks, leaking the underlying
+structural data.
+
+On the other hand, the image encrypted using CBC mode (Figure
+\ref{problem-12:pic-cbc}) successfully hides all distinct visual
+characteristics. By utilizing an Initialization Vector (IV) and XORing each
+plaintext block with the previous ciphertext block before encryption, CBC
+diffuses the data. This eliminates block repetition, resulting in a ciphertext
+output that appears as high-entropy, pseudorandom noise.
