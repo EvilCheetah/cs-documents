@@ -1,0 +1,10 @@
+\newcommand{\FormatCurrency}[1]{%
+  \$\num[
+    group-separator={,},      % Use commas to separate thousands
+    group-minimum-digits=4,   % Apply grouping to 4 digits or more (e.g., 1,000)
+    round-mode=places,        % Round to a specific number of decimal places
+    round-precision=2,        % Set exactly 2 decimal places
+    round-pad=true,           % Pad with trailing zeros (e.g., turns 1 into 1.00)
+    input-ignore={,}          % Ignore commas in parameter
+  ]{#1}%
+}

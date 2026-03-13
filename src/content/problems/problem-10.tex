@@ -1,5 +1,13 @@
 \item[\textbf{Problem 10}]
-Problem 10 Description ...
+Alice and Bob use the Diffie-Hellman to create two keys $k_1$ and $k_2$. In
+generating $k_1$, Alice selects a random number $x$ and computes $S_{A} = g^x
+\pmod{p}$. Bob selects a random number $y$ and computes $S_{B} = g^{y} \bmod p$.
+Alice and Bob exchange $S_{A}$ and $S_{B}$, and $k_1 = g^{xy} \bmod p$. In
+generating $k_2$, Alice chooses another random number $x'$ but Bob still uses
+the same random number $y$. Suppose an eavesdropper knows that $x$ and $x'$
+differ each other by $t$ (i.e., either $x-x' = t$ or $x'-x=t$). Given the
+knowledge of $k_1$ and a pair of plaintext $M$ and ciphertext $C$ encrypted by
+$k_2$, can the eavesdropper find out $k_2$?
 
 \Solution
 

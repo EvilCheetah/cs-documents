@@ -1,5 +1,23 @@
 \item[\textbf{Problem 11}]
-Problem 11 Description ...
+Alice designs a double-RSA cipher. She first generates two secret primes $p$ and
+$q$, and compute $n=p*q$, then choose two public encryption exponents $e_1$ and
+$e_2$ that are relatively prime to $\o(n)$. So $\langle e_1, e_2, n \rangle$
+becomes the public key. She tells people to encrypt message $M$ by computing
+$C_1=M^{e_1} \bmod n$ and then $C= C_1^{e_2} \bmod n$, finally sending just $C$
+to her.
+
+\begin{enumerate}
+    \item[a.] Show the decryption process (i.e., how Alice can obtain the
+    plaintext $M$ from the final ciphertext $C$).
+    \item[b.] Is the double-RSA cipher more secure, less secure, or just as
+    secure as the regular RSA cipher with the same modulus $n$ but only one
+    encryption exponent? Why?
+    \item[c.] Charlie got Alice's instructions confused, and encrypt message $M$
+    for Alice using $e_1$ and $e_2$ in the reverse order (i.e., Charlie uses
+    $C_1=M^{e_2} \bmod n$ then $C= C_1^{e_1} \bmod n$). What would happen when
+    Alice, unaware of Charlie's error, tries to decipher the ciphertext using
+    her usual procedure?
+\end{enumerate}
 
 \Solution
 
