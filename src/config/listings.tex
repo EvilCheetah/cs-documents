@@ -1,9 +1,20 @@
-\lstset{
+\usepackage{color}
+
+
+\definecolor{light-gray}{rgb}{0.8,0.8,0.8}
+
+
+\lstdefinestyle{bash-block}{
     basicstyle=\ttfamily\small,
     breaklines=true,
     frame=single,
     backgroundcolor=\color{gray!5},
-    keywordstyle=\color{blue},
     commentstyle=\color{green!40!black},
     captionpos=b
+}
+
+\lstdefinestyle{inline-mono}{
+    basicstyle=\ttfamily,
+    breaklines=true,
+    breakatwhitespace=false
 }

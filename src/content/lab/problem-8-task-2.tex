@@ -3,7 +3,7 @@ To create a random key file, the following command was used:
 
 \begin{center}
     \begin{minipage}{0.8\linewidth}
-        \begin{lstlisting}[language=bash, caption={Generating a 32-byte random key file}]
+        \begin{lstlisting}[style=bash-block, language=bash, caption={Generating a 32-byte random key file}]
             openssl rand -base64 32 > key.bin
         \end{lstlisting}
     \end{minipage}
@@ -21,7 +21,7 @@ To encrypt the file using the generated key, I used the following command:
 
 \begin{center}
     \begin{minipage}{0.8\linewidth}
-        \begin{lstlisting}[language=bash, caption={Encrypting a file using AES-256-CBC and a key file}]
+        \begin{lstlisting}[style=bash-block, language=bash, caption={Encrypting a file using AES-256-CBC and a key file}]
             openssl enc               \
                 -aes-256-cbc          \
                 -salt                 \
@@ -38,7 +38,7 @@ To decrypt the file, the following command was used:
 
 \begin{center}
     \begin{minipage}{0.8\linewidth}
-        \begin{lstlisting}[language=bash, caption={Decrypting the file using a key file}]
+        \begin{lstlisting}[style=bash-block, language=bash, caption={Decrypting the file using a key file}]
             openssl enc               \
                 -d                    \
                 -aes-256-cbc          \

@@ -3,7 +3,7 @@ To encrypt the file, I used the following command:
 
 \begin{center}
     \begin{minipage}{0.8\linewidth}
-        \begin{lstlisting}[language=bash, caption={Encrypting a file using AES-256-CBC}]
+        \begin{lstlisting}[style=bash-block, language=bash, caption={Encrypting a file using AES-256-CBC}]
             openssl enc          \
                 -aes-256-cbc     \
                 -salt            \
@@ -15,14 +15,14 @@ To encrypt the file, I used the following command:
     \end{minipage}
 \end{center}
 
-The following key was used when prompted:
+The following key was used when prompted: \\
 \code{NcbSXXuJqXB6Tz1Xg3uAbUqFOwcfqG31yLEEs88S}.
 
 To decrypt the file, the following command was used:
 
 \begin{center}
     \begin{minipage}{0.8\linewidth}
-        \begin{lstlisting}[language=bash, caption={Decrypting the file}]
+        \begin{lstlisting}[style=bash-block, language=bash, caption={Decrypting the file}]
             openssl enc          \
                 -d               \
                 -aes-256-cbc     \
