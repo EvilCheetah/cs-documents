@@ -1,16 +1,23 @@
 % Main File, a.k.a. Entry Point
-\documentclass{article}
+\documentclass[12pt]{article}
 
 % Package Import and Configuration
 \usepackage{import}
-\import{config/}{index.tex}
+
+\import{commands}{index}
+\import{config}{index.tex}
+\import{styles}{index.tex}
 
 
 % Include Data to Fill the Blanks in Form
-\import{data/}{index.tex}
+\import{data}{index.tex}
+
+
+\graphicspath{ {./content/figures} }
 
 
 % Document Body
 \begin{document}
+    \maketitle
     \import{content/}{index.tex}
 \end{document}
