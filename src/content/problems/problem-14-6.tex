@@ -15,4 +15,74 @@ the guests. Analyze the running time of your algorithm.
 
 \Solution
 
-Solution...
+The solution to this problem utilizes Dynamic Programming on a tree.
+
+\subsubsection*{Recurrence Relation}
+For any given node, we have two choices to maximize the sum of the conviviality
+ratings:
+\begin{enumerate}
+    \item If the node is included, we cannot include its immediate children. We
+    must sum the node's conviviality with the optimal solutions for its
+    grandchildren.
+
+    \item If the node is NOT included, we sum the optimal solutions for its
+    immediate children.
+\end{enumerate}
+
+This can be mathematically expressed as:
+$$
+    C[\text{node}] = \max
+    \begin{pmatrix} 
+        \displaystyle \sum_{y \text{ is a child of } \text{node}} C[y]                                 \\[2em] 
+        \displaystyle \text{node.conviviality} + \sum_{y \text{ is a grandchild of } \text{node}} C[y] 
+    \end{pmatrix}
+$$
+
+\subsubsection*{Algorithm Description}
+
+To implement this efficiently using the provided \textbf{left-child,
+right-sibling} representation, we perform a recursive \textbf{post-order
+traversal} of the tree. This guarantees that before we calculate
+$C[\text{node}]$, the optimal values $C[y]$ for all its children and
+grandchildren have already been computed. 
+
+We use \textbf{memoization} by storing the computed maximum conviviality value
+in a new field, \texttt{C}, on each node so it is only calculated once.
+
+For each visited \texttt{node} in the post-order traversal:
+\begin{itemize}
+    \item \textbf{Summing Children:} Follow the \texttt{node.left\_child}
+    pointer, then iterate through the \texttt{right\_sibling} pointers until
+    \texttt{null} is reached. Sum the stored \texttt{C} values of these nodes.
+
+    \item \textbf{Summing Grandchildren:} While iterating through the children
+    above, follow each child's \texttt{left\_child} pointer and iterate through
+    their respective \texttt{right\_sibling} pointers. Sum the stored \texttt{C}
+    values of these nodes.
+
+    \item Apply the recurrence relation to find the maximum of the two choices.
+    
+    \item Store this maximum in \texttt{node.C}.
+\end{itemize}
+The final maximum conviviality rating for the entire company party will be
+stored in \texttt{root.C}.
+
+
+\subsubsection*{Time Complexity}
+The time complexity of this procedure is $\mathbf{\Theta(n)}$.
+
+\begin{itemize}
+    \item Because we use memoization with a post-order traversal, the subproblem
+    for each node is solved exactly once.
+
+    \item At each node, finding the children and grandchildren involves
+    traversing the \texttt{left\_child} and \texttt{right\_sibling} pointers. 
+
+    \item Across the entire algorithm, every pointer in the tree is followed a
+    constant number of times (once when treating it as a child, and once when
+    treating it as a grandchild). 
+
+    \item Since a tree with $n$ nodes contains exactly $n-1$ edges (pointers),
+    the total amount of work done is directly proportional to the number of
+    nodes. Therefore, the time complexity is $\Theta(n)$.
+\end{itemize}
