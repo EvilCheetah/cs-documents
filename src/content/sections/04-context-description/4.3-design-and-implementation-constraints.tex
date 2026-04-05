@@ -1,0 +1,24 @@
+\subsection{Design and Implementation Constraints}
+
+\begin{itemize}
+    \item \textbf{Role-Based Access Control}: Permissions are locked to each
+    user and cannot be bypassed without higher-tier authorization
+
+    \item \textbf{User Authentication}: Login is managed through the University
+    of Oklahoma SSO Single Sign-On and Google's login service, so no custom
+    login or encryption system needs to be built
+
+    \item \textbf{Third-Party Integrations}: All reminders and calendar syncing
+    route through Microsoft's Graph Application Programming Interface and Google
+    Calendar's Application Programming Interface
+
+    \item \textbf{Event Delivery Speed}: The system must support near-real-time
+    delivery, with events appearing to eligible users within one minute of
+    publishing
+
+    \item \textbf{Data Storage}: Storage and server infrastructure should be
+    simple and internally manageable, with no cloud database required
+
+    \item \textbf{Technology Stack}: The client has no preference on programming
+    language, framework, or database
+\end{itemize}
