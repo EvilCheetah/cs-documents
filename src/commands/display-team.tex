@@ -1,0 +1,57 @@
+% \usepackage{datatool}
+
+% TODO(eugene): refactor using `tabularray`
+% Current issue: Unable to use `&` in `\DTLforeach` inside of `tblr` environment
+% Suggested solutions:
+%   - https://tex.stackexchange.com/questions/638066/how-to-use-dtlforeach-datatool-within-a-tabularray-table
+%   - https://tex.stackexchange.com/questions/703051/using-datatool-with-tabularray
+\newcommand{\DisplayTeamAndTheirContantInfo}{%
+    \begin{minipage}[t]{0.45\linewidth}
+        % Left Column
+        \begin{tabularx}{\linewidth}[t]{l l}
+            \DTLforeach
+                {teamdata}{
+                    \name=Name,
+                    \email=Email%
+                }
+                {%
+                    \ignorespaces
+                    \ifnumcomp{\DTLcurrentindex}{<}{\DTLrowcount{teamdata} / 2 + 1}
+                    {%
+                        Name:          & \Emphasize{\name}            \\
+                        Email Address: & \Emphasize{\Email{\email}}   \\
+                                       &                              \\
+                    }
+                    {
+                        % False - Do Nothing
+                    }%
+                }
+        \end{tabularx}%
+    \end{minipage}%
+    %
+    \hfill%
+    %
+    \begin{minipage}[t]{0.45\linewidth}
+        % Right Column
+        \begin{tabularx}{\linewidth}[t]{l l}%
+            \DTLforeach
+                {teamdata}{
+                    \name=Name,
+                    \email=Email%
+                }
+                {%
+                    \ignorespaces
+                    \ifnumcomp{\DTLcurrentindex}{>}{\DTLrowcount{teamdata} / 2}
+                    {%
+                        
+                        Name:          & \Emphasize{\name}            \\
+                        Email Address: & \Emphasize{\Email{\email}}   \\
+                                       &                              \\
+                    }
+                    {
+                        % False - Do Nothing
+                    }%
+                }
+        \end{tabularx}
+    \end{minipage}
+}

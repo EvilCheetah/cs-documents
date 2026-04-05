@@ -1,0 +1,44 @@
+% Title Fields
+\title{Project Charter Document}
+\author{\TeamName}
+\date{\DocumentDate}
+
+% Title Format Configuration
+\makeatletter
+    \renewcommand{\maketitle}
+    {%
+        %
+        % Dynamic vSpace
+        \vspace*{\fill}%
+        \begin{center}
+            \setlength{\parskip}{2.0\baselineskip}
+            \setlength{\parindent}{0pt}
+            % Dynamic vSpace
+            \vspace{\stretch{1}}
+            %
+            \Large%
+            \ClientName \\
+            \ClientProject
+
+            {\bfseries \MakeUppercase{\@title}}
+
+            \textbf{Prepared by} \\
+            \@author
+
+            \vspace*{\fill}
+
+            {
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics
+                        [width = 0.5\textwidth]
+                        {ou-cs-logo}
+                \end{figure}%
+            }
+
+            \textbf{Date}: \@date
+        \end{center}
+    }
+\makeatother
+%
+\thispagestyle{empty}

@@ -16,6 +16,7 @@
 *.out.ps
 *.pdf
 *.synctex.gz
+*.toc
 
 # Input
 *.example

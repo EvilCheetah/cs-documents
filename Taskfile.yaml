@@ -2,7 +2,7 @@ version: '3'
 
 vars:
     COMPILER: latexmk
-    JOBNAME: Document Template
+    JOBNAME: RD 2.0
 
 tasks:
     cleanup:
@@ -13,11 +13,13 @@ tasks:
               {{ .COMPILER }} {{ .FLAGS }} -jobname="{{ .JOBNAME }}"
 
     build:
+        dir: ./src/
+        deps: [  ]
         vars:
             FLAGS: -pdf
             ENTRYPOINT: main.tex
             
-            OUTPUT_DIR: .
+            OUTPUT_DIR: ..
         cmds:
             - |
               {{ .COMPILER }} {{ .FLAGS }}            \
@@ -35,4 +37,3 @@ tasks:
               {{ .COMPILER }} {{ .FLAGS }} \
               -output="{{ .JOBNAME }}.tex" \
               {{ .ENTRYPOINT }}
-              

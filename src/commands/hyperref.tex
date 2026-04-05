@@ -1,0 +1,26 @@
+% Email Link Formatting
+\newcommand
+    {\Email}[1]
+    {%
+        \href
+            {mailto:#1}
+            {#1}
+    }
+
+% Phone Number Link Formatting
+\newcommand
+    {\GitLab}[1]
+    {%
+        \href
+            {https://gitlab.com/#1}
+            {@#1}
+    }
+
+% Section Reference Formatting
+\newcommand
+    {\REF}[1]
+    {%
+        {%
+            Section \ref{#1}: \nameref{#1}%
+        }
+    }
