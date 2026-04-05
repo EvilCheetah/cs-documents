@@ -55,3 +55,16 @@
         \end{tabularx}
     \end{minipage}
 }
+
+
+\newcommand{\DisplayTeamMemberNames}{%
+    \leavevmode
+    \DTLforeach
+        {teamdata}{%
+            \name=Name,%
+            \email=Email%
+        }%
+        {%
+            \name\DTLiflastrow{}{\newline}%
+        }%
+}
