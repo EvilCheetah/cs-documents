@@ -1,0 +1,158 @@
+\subsection{System Feature 3: Mentee RSVP/un-RSVP} 
+
+
+\subsubsection{Description}
+Mentees can RSVP and un-RSVP to events created by mentors and time conflicts
+will be handled.
+\textit{(Priority: High)}
+
+
+
+\subsubsection{Functional Requirements}
+\begin{itemize}[label=$\bullet$]
+    \item \textbf{RSVP-1:} Mentees shall have the ability to RSVP to an event
+    that they are eligible for.
+    
+    \item \textbf{RSVP-2:} Mentees shall have the ability to un-RSVP from an
+    event.
+    
+    \item \textbf{RSVP-3:} Error message shall be displayed when a mentee
+    attempts to RSVP an event whose time slot (start time to end time) overlaps
+    with a RSVP'd events's time slot.
+    
+    \item \textbf{RSVP-4:} Mentors shall be able to approve a mentee's
+    registration in a time-conflicting event.
+\end{itemize}
+
+
+
+\subsubsection{Use Cases}
+
+% Use Case 6
+\begin{usecase}{UC-6: RSVP Event (with Time Conflict Handling)} 
+    \textbf{Primary Actor}  & Mentee \newline \textbf{Secondary Actor:} Mentor   \\ \hline
+    \textbf{Description}    & Mentees can RSVP to events that they are eligible
+                              for. A mentee may RSVP for an event that has time
+                              conflict with one of their currently RSVP'd events
+                              with mentor approval. The mentor will receive a
+                              notification on their mentor dashboard that allows
+                              them to approve or reject the mentee's RSVP
+                              request for the overlapping event.                 \\ \hline
+    \textbf{Preconditions}  & PRE-1: Mentee is elegible for this event (event is
+                              displayed on their personalized calendar).         \\ \hline
+    \textbf{Postconditions} & POST-1: Mentee is added to event's RSVP list.      \newline 
+                              POST-2: Event is marked on mentee's personalized
+                              calendar as RSVP'd.                                \\ \hline
+    \textbf{%
+        Normal Flow
+        (No Conflicts)%
+    }                       & 
+    \begin{tabenum}
+        \item Mentee selects an eligible event on their personalized calendar.
+        \item Mentee clicks on "RSVP".
+        \item Mentee gets added to event RSVP list.
+        \item Application marks event as RSVP'd on mentee's personal calendar.
+    \end{tabenum}                                                                \\ \hline
+    \textbf{%
+        Alternative Flow
+        (Mentor Approves)%
+    }                       & 
+    \begin{tabenum}
+        \item Mentee clicks on eligible event on their personalized calendar.
+        \item Application displays time conflict warning and registration is
+        blocked.
+        \item Mentee clicks on "Request Mentor Approval" button.
+        \item Notification is sent to the mentor's dashboard.
+        \item The mentor approves the registration.
+        \item Mentee is added to the new event's RSVP list in the database.
+        \item Application marks new event as RSVP'd on mentee's personal
+    calendar.
+    \end{tabenum}                                                                \\ \hline
+    \textbf{%
+        Alternative Flow
+        (Mentor Rejects)%
+    }                       & 
+    \begin{tabenum}
+        \item Mentee clicks on eligible event on their personalized calendar.
+        \item Application displays time conflict warning and registration is
+        blocked.
+        \item Mentee clicks on "Request Mentor Approval" button.
+        \item Notification is sent to mentor's dashboard.
+        \item Mentor rejects the registration.
+        \item Application sends rejection notification to mentee and no changes
+        are made to the mentee's personalized calendar.
+    \end{tabenum} \\
+\end{usecase}
+
+% Use Case 7
+\begin{usecase}{UC-7: Un-RSVP Event} 
+    \textbf{Primary Actor}  & Mentee                                             \\ \hline
+    \textbf{Description}    & Mentees can un-RSVP to any currently RSVP'd
+                              events. The mentees' personalized calendar must
+                              reflect these changes.                             \\ \hline
+    \textbf{Preconditions}  & PRE-1: Mentee has already RSVP'd to an event.      \\ \hline
+    \textbf{Postconditions} & POST-1: Event is marked as eligible on the
+                              mentee's personalized calendar.                    \newline
+                              POST-2: Mentee is removed from event's RSVP list.  \\ \hline
+    \textbf{Normal Flow}    & 
+    \begin{tabenum}
+        \item Mentee selects event that they have already RSVP'd.
+        \item Mentee selects "Un-RSVP" button.
+        \item Event is marked as eligible on mentee's personalized calendar.
+        \item Mentee is removed from event's RSVP list in database.
+    \end{tabenum} \\
+\end{usecase}
+
+
+
+\subsubsection{User Stories}
+
+\begin{itemize}[leftmargin=*, label=$\square$]
+    \item \textbf{As a mentee}, I want to RSVP events so that I can secure my
+    spot.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} A mentee can RSVP to an event that is marked
+        as eligible on their personalized calendar.
+
+        \item \textit{Acceptance:} A mentee is saved to event's RSVP list in
+        database.
+
+        \item \textit{Acceptance:} After mentee RSVPs, event is vistually
+        distinguishable from other eligible events on their personal calendar.
+    \end{itemize}
+
+    \item \textbf{As a mentee}, I want to un-RSVP from events, so that my mentor
+    knows I no longer want to attend.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} A mentee can un-RSVP from an event.
+        
+        \item \textit{Acceptance:} A mentee is removed from event's RSVP list in
+        database.
+
+        \item \textit{Acceptance:} After mentee un-RSVPs, their personal
+        calendar should mark the event as eligible.
+    \end{itemize}
+
+    \item \textbf{As a mentee}, I want to request mentor approval for an
+    overlapping event so that I can possibly attend both.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} A mentee can request permission to override
+        time conflict after clicking on event details from their personalized
+        calendar.
+
+        \item \textit{Acceptance:} Application marks time-conflicting event as
+        RSVP'd if mentor approves their RSVP request.
+    \end{itemize}
+
+    \item \textbf{As a mentor}, I want to receive time conflict notifications,
+    so that I can approve or reject a mentee's RSVP request for an event with a
+    time conflict.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} A mentor can receive a time conflict
+        notification when a mentee attempts to RSVP for an event that overlaps
+        with their RSVP'd events.
+
+        \item \textit{Acceptance:} A mentor can approve or reject a mentee's
+        RSVP request for a time conflicting event.
+    \end{itemize}
+\end{itemize}

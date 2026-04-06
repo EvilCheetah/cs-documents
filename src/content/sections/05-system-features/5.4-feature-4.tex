@@ -1,0 +1,65 @@
+\subsection{System Feature 4: Super Admin Interface} 
+
+
+\subsubsection{Description}
+
+Super Admin Interface allows the super admin to assign roles to users as mentees
+or mentors. The super admin can also promote or demote users.
+\textit{(Priority: High)}
+
+
+
+\subsubsection{Functional Requirements}
+\begin{itemize}[label=$\bullet$]
+    \item \textbf{SAI-1:} Super Admin shall be able to assign mentor/mentee
+    roles to users.
+    
+    \item \textbf{SAI-2:} Super Admin shall be able to edit user roles.
+\end{itemize}
+
+
+
+\subsubsection{Use Cases}
+
+% Use Case 8
+\begin{usecase}{UC-8: Assign User Role} 
+    \textbf{Primary Actor}  & Super Admin                                        \\ \hline
+    \textbf{Description}    & Super Admin is able to promote, demote, and assign
+                              roles (mentee or mentor) to users.                 \\ \hline
+    \textbf{Preconditions}  & PRE-1: User is authorized as Super Admin.          \newline
+                              PRE-2: Targeted user has logged in via OU SSO and
+                              database has saved "unassigned" to their role
+                              field.                                             \\ \hline
+    \textbf{Postconditions} & POST-1: User's new role is assigned to the role
+                              field in database.                                 \\ \hline
+    \textbf{Normal Flow}    & 
+    \begin{tabenum}
+        \item Super Admin navigates to their Super Admin interface.
+        \item Super Admin selects targeted user.
+        \item Super Admin selects "Edit Role".
+        \item Super Admin selects desired role (Mentor or Mentee) from drop down
+        menu.
+        \item Super Admin selects "Save Changes".
+    \end{tabenum} \\
+\end{usecase}
+
+
+
+\subsubsection{User Stories}
+
+\begin{itemize}[leftmargin=*, label=$\square$]
+    \item \textbf{As a super admin}, I want to assign roles to users so that
+    users have access to their correct interfaces.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} A Super Admin can access their Super Admin
+        dashboard.
+
+        \item \textit{Acceptance:} A Super Admin can assign mentee or mentor
+        role to user.
+
+        \item \textit{Acceptance:} A Super Admin can promote or demote users
+        between mentors and mentees.
+    \end{itemize}
+\end{itemize}
+
+

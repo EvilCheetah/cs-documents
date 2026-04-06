@@ -1,0 +1,13 @@
+\newenvironment{usecase}[1]{
+    \vspace{1em}
+    \noindent
+    \setlength{\tabcolsep}{6pt}
+    \tabularx{\textwidth}{|>{\raggedright\arraybackslash\bfseries}p{3.5cm}|X|}
+    \hline
+    \multicolumn{2}{|c|}{\cellcolor{gray!10}\textbf{#1}} \\
+    \hline
+}{
+    \hline
+    \endtabularx
+    \vspace{1.5em}
+}

@@ -1,0 +1,77 @@
+\subsection{System Feature 2: Mentee Personalized Calendar} 
+
+
+\subsubsection{Description}
+Mentees can access a personalized calendar that displays eligible and RSVP'd
+events. Mentees are able to view event details after clicking on an event.
+\textit{(Priority: High)}
+
+
+
+\subsubsection{Functional Requirements}
+
+\begin{itemize}[label=$\bullet$]
+    \item \textbf{MPC-1:} Mentees shall have access to a personalized calendar
+    that displays their eligible events and RSVP'd events.
+
+    \item \textbf{MPC-2:} Elegible events shall be visually distinguishable from
+    RSVP'd events on mentee's personalized calendar.
+
+    \item \textbf{MPC-3:} Mentees shall be able to view an event's title, date,
+    start time, end time, location, description, and RSVP list after clicking on
+    event in personalized calendar.
+\end{itemize}
+
+
+
+\subsubsection{Use Cases}
+
+% Use Case 5
+\begin{usecase}{UC-5: View Personalized Calendar} 
+    \textbf{Primary Actor}  & Mentee                                             \\ \hline
+    \textbf{Description}    & Mentee can view personalized calendar that
+                              displays eligible events and RSVP'd events. After
+                              clicking on event, mentee should be displayed with
+                              its information.                                   \\ \hline
+    \textbf{Preconditions}  & PRE-1: User is authenticated as mentee.            \\ \hline
+    \textbf{Postconditions} & POST-1: Calendar filters and displays only events
+                              that mentee is eligible for.                       \newline 
+                              POST-2: Calendar displays mentee's RSVP'd events.  \\ \hline
+    \textbf{Normal Flow}    & 
+    \begin{tabenum}
+        \item Mentee navigates to their personalized calendar.
+        
+        \item Personalized Calendar displays eligible events and RSVP'd events
+        that are visually distinguishable.
+        
+        \item Mentee clicks on the event.
+        
+        \item Application displays a read-only view of event title, date, start
+        time, end time, location, description, and RSVP list.
+    \end{tabenum} \\
+\end{usecase}
+
+
+
+\subsubsection{User Stories}
+
+\begin{itemize}[leftmargin=*, label=$\square$]
+    \item \textbf{As a mentee}, I want to view a personalized calendar, so that
+    I can maintain a schedule of events I am eligible for and events I have
+    RSVP'd.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} A mentee has access to a personalized
+        calendar.
+
+        \item \textit{Acceptance:} Eligible events and RSVP'd events have
+        different appearances when displayed on mentees' personalized calendars.
+    \end{itemize}
+
+    \item \textbf{As a mentee}, I want to click on events so that I can see
+    information that will help me decide whether I want to RSVP or not.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} A mentee can view event title, date, start
+        time, end time, location, description, and RSVP list after clicking on
+        an event on their personalized calendar.
+    \end{itemize}
+\end{itemize}

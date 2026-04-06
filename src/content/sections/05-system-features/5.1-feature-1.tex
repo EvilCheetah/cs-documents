@@ -1,0 +1,111 @@
+\subsection{System Feature 1: Mentor Dashboard} 
+
+
+\subsubsection{Description}
+The mentor shall be able to create and edit events for mentees to view on their
+personalized calendars. Mentors can set event visibility so that mentees only
+see relevant events they are eligible for. \textit{(Priority: High)} 
+
+
+
+\subsubsection{Functional Requirements}
+
+\begin{itemize}[label=$\bullet$]
+    \item \textbf{MD-1:} Mentors shall create events with one out of three
+    visibility settings (invitation-only, open-to-everyone, or cohort-specific).
+    
+    \item \textbf{MD-2:} Mentors shall be able to add info about event title,
+    location, date, start time, end time, and description.
+    
+    \item \textbf{MD-3:} Mentors shall be able to edit event title, location,
+    date, start time, end time, and description.
+    
+    \item \textbf{MD-4:} Mentors shall be able to delete events.
+    
+    \item \textbf{MD-5:} Mentors shall have access to the RSVP list of events
+    they are hosting.
+    
+    \item \textbf{MD-6:} Mentors shall be able to invite mentees to their
+    invitation-only events.
+\end{itemize}
+
+
+
+\subsubsection{Use Cases}
+
+% Use Case 1
+\begin{usecase}{UC-1: Create an Event} 
+    \textbf{Primary Actor}  & Mentor                                             \\ \hline
+    \textbf{Description}    & The mentor creates an event and sets visibility as
+                              either invitation-only, open-to-everyone, or
+                              cohort-specific. The mentor inputs info regarding
+                              event title, date, location, start time, end time,
+                              and description.                                   \\ \hline
+    \textbf{Preconditions}  & PRE-1: User is authorized as mentor.               \\ \hline
+    \textbf{Postconditions} & POST-1: New event is stored in a database.         \newline 
+                              POST-2: New event displayed on calendars of
+                              mentees that satisfy visibility settings.          \\ \hline
+    \textbf{%
+        Normal Flow
+        (Open-to-Everyone)%
+    }                       & 
+    \begin{tabenum}
+        \item Mentor selects "Create Event" button on dashboard.
+        \item Application displays empty event form.
+        \item Mentor selects open-to-everyone visibility.
+        \item Mentor inputs details (title, location, date, times, description).
+        \item Mentor clicks "Publish Event".
+        \item Application saves event to database.
+        \item Event is displayed as eligible on all mentees' personalized
+        calendars.
+    \end{tabenum}                                                                \\ \hline
+
+    \textbf{Exceptions}     & If any required fields are missing, event creation
+                              will be blocked.                                   \\
+\end{usecase}
+
+% Use Case 2
+\begin{usecase}{UC-2: Edit Event Details} 
+    \textbf{Primary Actor}  & Mentor                                             \\ \hline
+    \textbf{Description}    & A mentor can edit any information of an event that
+                              they have created. After saving changes, the
+                              application should reflect these updates on
+                              mentees' personal calendars.                       \\ \hline
+    \textbf{Preconditions}  & PRE-1: Mentor is the creator of this event.        \\ \hline
+    \textbf{Postconditions} & POST-1: Event details are updated in the database. \newline
+                              POST-2: Updated event details should be reflected
+                              on relevant mentee's personal calendars.           \\ \hline
+    \textbf{Normal Flow}    & 
+    \begin{tabenum}
+        \item Mentor selects an event from their dashboard.
+        \item Mentor inputs desired changes.
+        \item Mentor clicks "Save Changes".
+        \item Application updates event details in database.
+        \item Changes are reflected in relevant mentee's personal calendars.
+    \end{tabenum} \\
+\end{usecase}
+
+
+
+\subsubsection{User Stories}
+\begin{itemize}[leftmargin=*, label=$\square$]
+    \item \textbf{As a mentor}, I want to control event visibility so that
+    mentees see only the events that they are eligible to attend.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} A mentor can set visibility to
+        invitation-only, open to everyone, or cohort-specific.
+
+        \item \textit{Acceptance:} A mentee's personal calendar only displays
+        events that they are eligible for.
+    \end{itemize}
+
+    \item \textbf{As a mentor}, I want to delete an event so that mentees know
+    it is cancelled.
+    \begin{itemize}[label=$\circ$, nosep]
+        \item \textit{Acceptance:} Event should be deleted from database and
+        removed from all mentee's personal calendars.
+    \end{itemize}
+    
+    \item \textbf{As a mentor}, I want to view the RSVP list so that I can
+    monitor attendance and plan accordingly.
+\end{itemize}
