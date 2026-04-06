@@ -1,0 +1,23 @@
+\subsection{Software interfaces}
+
+\begin{itemize}
+    \item \textbf{OU SSO and Google Login/OAuth:} For institutional user
+    authentication and Google account authentication.
+    
+    \item \textbf{Microsoft Graph API and Google Calendar API:} For calendar
+    synchronization.
+    
+    \item \textbf{Data Storage Layer:} For shared data to remain consistent
+    across the frontend, backend, database, and third party integrations.
+    
+    \item \textbf{Communication between frontend web interface and backend
+    application server:}
+    \begin{itemize}
+        \item Frontend sends requests (eg. for viewing events, creating events,
+        RSVPing, managing user roles, etc.).
+        
+        \item Backend processes the requests, applies business rules,
+        stores/retrieves data from the database, and communicates with APIs for
+        calendar synchronization or authentication.
+    \end{itemize}
+\end{itemize}

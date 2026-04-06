@@ -1,0 +1,42 @@
+\subsection{Communication interfaces}
+
+\begin{itemize}
+    \item \textbf{Web communication:}
+    \begin{itemize}
+        \item Client-server communication occurs over HTTPS for secure data
+        transmission.
+
+        \item The system will support modern web browsers.
+    \end{itemize}
+
+    \item \textbf{API communication:}
+    \begin{itemize}
+        \item Microsoft Graph API to synchronize our platform's mentee's
+        calendars with their microsoft outlook calendars.
+
+        \item We will have our own backend API endpoints to handle requests from
+        the frontend.
+    \end{itemize}
+
+    \item \textbf{Authentication communication:}
+    \begin{itemize}
+        \item OU SSO.
+        
+        \item Google Login/OAuth to allow for google account authentication.
+    \end{itemize}
+
+    \item \textbf{Notification communication:}
+    \begin{itemize}
+        \item Mentors are sent a notification from the system if scheduling
+        conflict happens.
+
+        \item Mentees are sent a notification from the system if attempting to
+        RSVP for time conflicting event.
+    \end{itemize}
+
+    \item \textbf{Frontend-Backend communication:}
+    \begin{itemize}
+        \item Expose Backend API endpoints and configure CORS for the backend
+        server to allow access only from trusted frontend origins.
+    \end{itemize}
+\end{itemize}
