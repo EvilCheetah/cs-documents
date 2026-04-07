@@ -1,0 +1,38 @@
+\documentclass[tikz,border=10pt]{standalone}
+
+\usepackage{amsmath}
+
+\begin{document}
+\begin{tikzpicture}[>=latex, x=1cm, y=1cm]
+
+% -- Boxes --
+% Adjusted width, height, and font to match the new horizontal layout.
+% Added a subtle gray border to mimic the image.
+% -- Boxes --
+\node[draw, minimum width=2.5cm, minimum height=8cm]
+    (alice-box) at (0,0)
+    {\large\rotatebox{90}{\textbf{Alice}}};
+
+\node[draw, minimum width=2.5cm, minimum height=8cm]
+    (bob-box) at (12,0)
+    {\large\rotatebox{90}{\textbf{Bob}}};
+
+% -- Coordinates for the messages --
+\coordinate (message-1-y) at (0, 1.5);
+\coordinate (message-2-y) at (0, -1.5);
+
+% -- Message 1: Alice to Bob --
+% Added shorten <= and >= so the arrows have a gap from the boxes.
+\draw[->, thick, shorten <= 0.5cm, shorten >= 0.5cm]
+    (alice-box.east |- message-1-y) -- node[midway, above=3pt, font=\large\sffamily]
+    {$M_1 = \text{``This is Alice''}$, $R_1$, $Alice_{Sign}(M_1, R_1)$}
+    (bob-box.west |- message-1-y);
+
+% -- Message 2: Bob to Alice --
+\draw[->, thick, shorten <= 0.5cm, shorten >= 0.5cm]
+    (bob-box.west |- message-2-y) -- node[midway, above=3pt, font=\large\sffamily]
+    {$M_2 = \text{``This is Bob''}$, $R_2$, $Bob_{Sign}(M_2, R_2)$}
+    (alice-box.east |- message-2-y);
+
+\end{tikzpicture}
+\end{document}

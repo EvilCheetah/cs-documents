@@ -1,0 +1,40 @@
+\documentclass[tikz,border=10pt]{standalone}
+
+\begin{document}
+\begin{tikzpicture}[>=latex, x=1cm, y=1cm]
+
+% -- Boxes --
+\node[draw, minimum width=2.5cm, minimum height=8cm]
+    (alice-box) at (0,0)
+    {\large\rotatebox{90}{\textbf{Alice}}};
+
+\node[draw, minimum width=2.5cm, minimum height=8cm]
+    (bob-box) at (8,0)
+    {\large\rotatebox{90}{\textbf{Bob}}};
+
+% -- Coordinates for the messages --
+\coordinate (message-1-y) at (0, 2.75);
+\coordinate (message-2-y) at (0, 0);
+\coordinate (message-3-y) at (0, -2.75);
+
+% -- Message 1: "I'm Alice" --
+\draw[->]
+    (alice-box.east |- message-1-y) -- node[midway, above=1pt]
+    {I'm Alice}
+    (bob-box.west |- message-1-y);
+
+% -- Message 2: "R" --
+% Arrow from Bob's box back to Alice's box. Text is centered and placed above the line.
+\draw[->]
+    (bob-box.west |- message-2-y) -- node[midway, above=1pt]
+    {$R$, $K_{Bob{R}}$}
+    (alice-box.east |- message-2-y);
+
+% -- Message 3: "R, K_Alice_Bob{R}" --
+\draw[->]
+    (alice-box.east |- message-3-y) -- node[midway, above=1pt]
+    {$K_{Bob\{R\}}$, $K_{Alice,Bob\{R\}}$}
+    (bob-box.west |- message-3-y);
+
+\end{tikzpicture}
+\end{document}
