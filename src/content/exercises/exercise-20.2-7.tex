@@ -10,4 +10,19 @@ possible to perform such a designation, your algorithm should produce it.
 
 \Solution
 
-Exercise 20.2-7 Solution...
+\begin{itemize}
+    \item Create a graph $G = (V, E)$ where each wrestler is represented by a
+    vertex and each rivalry is represented by an undirected edge.
+
+    \item Use \textsc{Breadth-First Search} to traverse the graph. If the graph
+    is disconnected, repeat the process for each unvisited node to ensure all
+    components are processed.
+    
+    \item During the BFS, assign a distance to each vertex. Designate wrestlers
+    at even distances as \textbf{faces} and wrestlers at odd distances as
+    \textbf{heels}.
+    
+    \item Finally, traverse all edges $(u, v) \in E$ to verify that no two
+    wrestlers of the same type (e.g., face-face or heel-heel) share an edge. If
+    such an edge exists, a valid designation is impossible.
+\end{itemize}
