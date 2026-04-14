@@ -2,7 +2,7 @@ version: '3'
 
 vars:
     COMPILER: latexmk
-    JOBNAME: Assignment-Template
+    JOBNAME: Assignment 8
 
 tasks:
     cleanup:
