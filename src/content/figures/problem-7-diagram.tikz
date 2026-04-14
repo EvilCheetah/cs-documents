@@ -27,13 +27,13 @@
 % Arrow from Bob's box back to Alice's box. Text is centered and placed above the line.
 \draw[->]
     (bob-box.west |- message-2-y) -- node[midway, above=1pt]
-    {$R$, $K_{Bob{R}}$}
+    {$R$, $K_{Bob}(R)$}
     (alice-box.east |- message-2-y);
 
 % -- Message 3: "R, K_Alice_Bob{R}" --
 \draw[->]
     (alice-box.east |- message-3-y) -- node[midway, above=1pt]
-    {$K_{Bob\{R\}}$, $K_{Alice,Bob\{R\}}$}
+    {$K_{Bob}(R)$, $K_{Alice,Bob}(R)$}
     (bob-box.west |- message-3-y);
 
 \end{tikzpicture}

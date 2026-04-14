@@ -33,7 +33,7 @@
 % -- Message 3: "R, K_Alice_Bob{R}" --
 \draw[->]
     (alice-box.east |- message-3-y) -- node[midway, above=1pt]
-    {$R$, $K_{Alice,Bob\{R\}}$}
+    {$R$, $K_{Alice,Bob}(R)$}
     (bob-box.west |- message-3-y);
 
 \end{tikzpicture}
