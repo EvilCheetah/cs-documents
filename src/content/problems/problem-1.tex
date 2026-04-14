@@ -1,19 +1,51 @@
 \item[\textbf{Problem 1}]
 Compute the following with \textsc{Detailed Mathematical Steps}. (Hints: Use
 Fermat Theorem, Euler Theorem, properties of totient functions, etc)
-\begin{enumerate}
-    \item[(1)] $1234^{16} \bmod 17$
-    \item[(2)] $54^{51} \bmod 17$
-    \item[(3)] $\phi(51)$
-    \item[(4)] $\gcd(33, 121)$
-    \item[(5)] $2^{-1} \bmod 17$ (i.e., multiplicative inverse of $2 \bmod 17$)
-    \item[(6)] $\text{ind}_{2,5}(4)$
-    \item[(7)] $\phi(8000)$
-    \item[(8)] $\phi(98803519)$
-    \item[(9)] $\phi(999866001989)$ \textcolor{red}{for the graduate session
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+    \item $1234^{16} \bmod 17$
+    \item $54^{51} \bmod 17$
+    \item $\phi(51)$
+    \item $\gcd(33, 121)$
+    \item $2^{-1} \bmod 17$ (i.e., multiplicative inverse of $2 \bmod 17$)
+    \item $\text{ind}_{2,5}(4)$
+    \item $\phi(8000)$
+    \item $\phi(98803519)$
+    \item $\phi(999866001989)$ \textcolor{red}{for the graduate session
     only.}
 \end{enumerate}
 
 \Solution
 
-Solution...
+\newenvironment{solution}
+    {\vspace{0.5em}\par\noindent\textbf{Solution:}}
+    {\hfill$\blacksquare$\vspace{1.5em}}
+
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+    \item $1234^{16} \bmod 17$
+    \begin{solution}
+        By Fermat's Little Theorem, since $17$ is prime, we know that:
+        \begin{alignat*}{2}
+            a^{p-1}     &\equiv 1 \pmod p   \\
+            1234^{16}   &\equiv 1 \pmod{17} \\
+            1234^{17-1} &\equiv 1 \pmod{17} \\
+        \end{alignat*}
+        Therefore, the answer is $1$.
+    \end{solution}
+
+    \item $54^{51} \bmod 17$
+    
+    \item $\phi(51)$
+    
+    \item $\gcd(33, 121)$
+    
+    \item $2^{-1} \bmod 17$ (i.e., multiplicative inverse of $2 \bmod 17$)
+    
+    \item $\text{ind}_{2,5}(4)$
+    
+    \item $\phi(8000)$
+    
+    \item $\phi(98803519)$
+    
+    \item $\phi(999866001989)$ \textcolor{red}{for the graduate session
+    only.}
+\end{enumerate}
