@@ -3,4 +3,28 @@ What is DNS, and how can ISP know the domain information that you want to visit?
 
 \Solution
 
-Solution...
+The Domain Name System (DNS) is the phonebook of the Internet. Humans access
+information online through domain names, like \texttt{nytimes.com} or
+\texttt{espn.com}. Web browsers interact through Internet Protocol (IP)
+addresses. DNS translates domain names to IP addresses so browsers can load
+Internet resources.
+
+Each device connected to the Internet has a unique IP address, which other
+machines use to find the device. DNS servers eliminate the need for humans to
+memorize IP addresses such as 192.168.1.1 (in IPv4), or more complex newer
+alphanumeric IP addresses such as 2400:cb00:2048:1::c629:d7a2 (in
+IPv6)~\cite{cloudflare_dns}.
+
+\begin{itemize}
+    \item Unencrypted DNS: By default, your router uses your ISP's DNS servers.
+    Because standard DNS requests are unencrypted, the ISP simply reads the
+    requested domain names in plain text.
+
+    \item SNI Data (Server Name Indication): Even on secure (HTTPS) websites,
+    your browser must announce the specific domain name it wants to connect to
+    in plain text during the initial security handshake.
+
+    \item Destination IP Routing: Because the ISP physically routes all data,
+    they must read the destination IP address on every packet to deliver it,
+    which reveals the server you are communicating with.
+\end{itemize}
