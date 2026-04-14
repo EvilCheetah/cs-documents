@@ -1,8 +1,62 @@
 \item[\textbf{Exercise 20.3-9}]
 Modify the pseudocode for depth-first search so that it prints out every edge in
 the directed graph $G$, together with its type. Show what modifications, if any,
-you need to make if $G$ is undirected. 
+you need to make if $G$ is undirected.
+
+\begin{minipage}{\linewidth}
+    \centering
+    \begin{codebox}
+    \Procname{$\proc{DFS-Visit}(G, u)$}
+    \li $\id{time} = \id{time} + 1$                  \CommentAt{7}{white vertex $u$ has just}
+    \zi                                              \CommentAt{7}{been discovered}
+    \li $\attrib{u}{d} = \id{time}$
+    \li $\attrib{u}{color} = \const{gray}$
+    \li \For each vertex $v$ in $\attrib{G}{Adj}[u]$ \CommentAt{7}{explore each edge $(u, v)$} \Do
+    \li     \If $\attrib{v}{color} \isequal \const{white}$ \Then
+    \li         $\attribxx{v}{\pi} = u$
+    \li         $\proc{DFS-Visit}(G, v)$
+            \End
+        \End
+    \li $\id{time} = \id{time} + 1$
+    \li $\attrib{u}{f} = \id{time}$
+    \li $\attrib{u}{color} = \const{black}$          \CommentAt{7}{blacken $u$; it is finished}
+    \end{codebox}
+    \captionof{figure}{%
+        Original $\proc{DFS-Visit}$ implementation from Section 20.3
+        (Depth-first search), p. 565.%
+    }
+    \label{figure:dfs-visit}
+\end{minipage}
 
 \Solution
 
-Exercise 20.3-9 Solution...
+\begin{minipage}{\linewidth}
+    \centering
+    \begin{codebox}
+        \Procname{$\proc{DFS-Visit}(G, u)$}
+        \li $\id{time} = \id{time} + 1$                  \CommentAt{7}{white vertex $u$ has just}
+        \zi                                              \CommentAt{7}{been discovered}
+        \li $\attrib{u}{d} = \id{time}$
+        \li $\attrib{u}{color} = \const{gray}$
+        \li \For each vertex $v$ in $\attrib{G}{Adj}[u]$ \CommentAt{7}{explore each edge $(u, v)$} \Do
+        \li     \If $\attrib{v}{color} \isequal \const{white}$ \Then
+        \li         $\textcolor{red}{\text{print ``}(u, v)\text{: tree edge''}}$
+        \li         $\attribxx{v}{\pi} = u$
+        \li         $\proc{DFS-Visit}(G, v)$
+        \li \ElseIf \textcolor{red}{$\attrib{v}{color} \isequal \const{gray}$} \Then
+        \li         \textcolor{red}{$\text{print ``}(u, v)\text{: back edge''}$}
+        \li     \ElseIf \textcolor{red}{$\attrib{u}{d} < \attrib{v}{d}$} \Then
+        \li         \textcolor{red}{$\text{print ``}(u, v)\text{: forward edge''}$}
+        \li     \Else
+        \li         \textcolor{red}{$\text{print ``}(u, v)\text{: cross edge''}$}
+                \End
+            \End
+        \li $\id{time} = \id{time} + 1$
+        \li $\attrib{u}{f} = \id{time}$
+        \li $\attrib{u}{color} = \const{black}$          \CommentAt{7}{blacken $u$; it is finished}
+    \end{codebox}
+    \captionof{figure}{%
+        Modified $\proc{DFS-Visit}$ algorithm, with changes highlighted in red.%
+    }
+    \label{figure:modified-dfs-visit}
+\end{minipage}
