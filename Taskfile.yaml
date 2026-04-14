@@ -1,8 +1,10 @@
 version: '3'
 
+
 vars:
     COMPILER: latexmk
     JOBNAME: Assignment 8
+
 
 tasks:
     cleanup:
@@ -14,6 +16,7 @@ tasks:
 
     build:
         dir: ./src/
+        deps: [ compile:graphics ]
         vars:
             FLAGS: -pdf
             ENTRYPOINT: main.tex
@@ -36,4 +39,36 @@ tasks:
               {{ .COMPILER }} {{ .FLAGS }} \
               -output="{{ .JOBNAME }}.tex" \
               {{ .ENTRYPOINT }}
-              
+
+
+    compile:graphics:
+        dir: ./src/
+        vars:
+            INPUT_DIR: content/figures
+            OUTPUT_DIR: content/figures
+        deps:
+            - task: compile:individual-graphic
+              vars: {
+                INPUT_DIR:  "{{ .INPUT_DIR }}",
+                OUTPUT_DIR: "{{ .OUTPUT_DIR }}",
+                FILE:       exercise-20.1-2-complete-binary-tree.tikz
+              }
+            - task: compile:individual-graphic
+              vars: {
+                INPUT_DIR:  "{{ .INPUT_DIR }}",
+                OUTPUT_DIR: "{{ .OUTPUT_DIR }}",
+                FILE:       exercise-20.1-2-adjacency-list-representation.tikz
+              }
+
+    compile:individual-graphic:
+        internal: true
+        dir: ./src/
+        requires:
+            vars: [INPUT_DIR, OUTPUT_DIR, FILE]
+        vars:
+            FLAGS: -pdf
+        cmds:
+            - |
+              {{ .COMPILER }} {{ .FLAGS }}              \
+                -output-directory="./{{ .OUTPUT_DIR }}" \
+                {{ .INPUT_DIR }}/{{ .FILE }}

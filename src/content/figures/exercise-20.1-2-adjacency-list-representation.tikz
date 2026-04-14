@@ -1,0 +1,112 @@
+\documentclass[tikz, border=10pt]{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{matrix, chains, positioning, arrows.meta}
+
+\begin{document}
+
+% Color matching the original (warm tan/wheat)
+\definecolor{nodecolor}{RGB}{240, 210, 150}
+
+\tikzset{
+  % A single cell in the linked list
+  cell/.style={
+    draw,
+    minimum width=0.7cm,
+    minimum height=0.7cm,
+    fill=nodecolor,
+    outer sep=0pt,
+  },
+  % The array index box (left column)
+  indexbox/.style={
+    draw,
+    minimum width=0.7cm,
+    minimum height=0.7cm,
+    fill=nodecolor,
+    outer sep=0pt,
+  },
+  % Arrow style
+  ptr/.style={->, >=stealth, thick},
+  % Null slash style
+  nullslash/.style={thick},
+}
+
+\begin{tikzpicture}[node distance=0pt]
+
+% ===== ARRAY (left column) =====
+% 7 index boxes stacked vertically, spacing 1.05cm between centers
+\foreach \i in {1,2,3,4,5,6,7} {
+  \node[indexbox] (arr\i) at (0, {-(\i-1)*1.05}) {};
+}
+
+% ===== ROW 1: arr[1] -> [2|->] -> [3|/] =====
+\node[cell] (r1a-val) at (1.8,  0)       {2};
+\node[cell] (r1a-ptr) at (2.5,  0)       {};
+\node[cell] (r1b-val) at (4.2,  0)       {3};
+\node[cell] (r1b-ptr) at (4.9,  0)       {};
+\draw[nullslash] (r1b-ptr.south west) -- (r1b-ptr.north east);
+
+% ===== ROW 2: arr[2] -> [1|->] -> [4|->] -> [5|/] =====
+\node[cell] (r2a-val) at (1.8,  -1.05)   {1};
+\node[cell] (r2a-ptr) at (2.5,  -1.05)   {};
+\node[cell] (r2b-val) at (4.2,  -1.05)   {4};
+\node[cell] (r2b-ptr) at (4.9,  -1.05)   {};
+\node[cell] (r2c-val) at (6.6,  -1.05)   {5};
+\node[cell] (r2c-ptr) at (7.3,  -1.05)   {};
+\draw[nullslash] (r2c-ptr.south west) -- (r2c-ptr.north east);
+
+% ===== ROW 3: arr[3] -> [1|->] -> [6|->] -> [7|/] =====
+\node[cell] (r3a-val) at (1.8,  -2.1)    {1};
+\node[cell] (r3a-ptr) at (2.5,  -2.1)    {};
+\node[cell] (r3b-val) at (4.2,  -2.1)    {6};
+\node[cell] (r3b-ptr) at (4.9,  -2.1)    {};
+\node[cell] (r3c-val) at (6.6,  -2.1)    {7};
+\node[cell] (r3c-ptr) at (7.3,  -2.1)    {};
+\draw[nullslash] (r3c-ptr.south west) -- (r3c-ptr.north east);
+
+% ===== ROW 4: arr[4] -> [2|/] =====
+\node[cell] (r4a-val) at (1.8,  -3.15)   {2};
+\node[cell] (r4a-ptr) at (2.5,  -3.15)   {};
+\draw[nullslash] (r4a-ptr.south west) -- (r4a-ptr.north east);
+
+% ===== ROW 5: arr[5] -> [2|/] =====
+\node[cell] (r5a-val) at (1.8,  -4.2)    {2};
+\node[cell] (r5a-ptr) at (2.5,  -4.2)    {};
+\draw[nullslash] (r5a-ptr.south west) -- (r5a-ptr.north east);
+
+% ===== ROW 6: arr[6] -> [3|/] =====
+\node[cell] (r6a-val) at (1.8,  -5.25)   {3};
+\node[cell] (r6a-ptr) at (2.5,  -5.25)   {};
+\draw[nullslash] (r6a-ptr.south west) -- (r6a-ptr.north east);
+
+% ===== ROW 7: arr[7] -> [3|/] =====
+\node[cell] (r7a-val) at (1.8,  -6.3)    {3};
+\node[cell] (r7a-ptr) at (2.5,  -6.3)    {};
+\draw[nullslash] (r7a-ptr.south west) -- (r7a-ptr.north east);
+
+% ===== ARROWS from array to first node =====
+\draw[ptr] (arr1.east)  -- (r1a-val.west);
+\draw[ptr] (arr2.east)  -- (r2a-val.west);
+\draw[ptr] (arr3.east)  -- (r3a-val.west);
+\draw[ptr] (arr4.east)  -- (r4a-val.west);
+\draw[ptr] (arr5.east)  -- (r5a-val.west);
+\draw[ptr] (arr6.east)  -- (r6a-val.west);
+\draw[ptr] (arr7.east)  -- (r7a-val.west);
+
+% ===== ARROWS between linked list nodes =====
+% Row 1
+\draw[ptr] (r1a-ptr.center) -- (r1b-val.west);
+% Row 2
+\draw[ptr] (r2a-ptr.center) -- (r2b-val.west);
+\draw[ptr] (r2b-ptr.center) -- (r2c-val.west);
+% Row 3
+\draw[ptr] (r3a-ptr.center) -- (r3b-val.west);
+\draw[ptr] (r3b-ptr.center) -- (r3c-val.west);
+
+% ===== ROW LABELS (index numbers to the left of array) =====
+\foreach \i in {1,2,3,4,5,6,7} {
+  \node[left=0.25cm of arr\i, font=\large] {\i};
+}
+
+\end{tikzpicture}
+\end{document}

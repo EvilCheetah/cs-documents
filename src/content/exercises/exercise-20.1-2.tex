@@ -5,4 +5,55 @@ undirected and that the vertices are numbered from 1 to 7 as in a binary heap.
 
 \Solution
 
-Exercise 20.1-2 Solution...
+% Complete Binary Tree
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics
+        [width=0.8\linewidth]
+        {exercise-20.1-2-complete-binary-tree.pdf}
+    \captionof
+        {figure}
+        {Complete binary tree consisting of seven vertices}
+    \label{figure:complete-binary-tree}
+\end{minipage}
+
+% Adjacency List
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics
+        [width=0.8\linewidth]
+        {exercise-20.1-2-adjacency-list-representation.pdf}
+    \captionof
+        {figure}
+        {%
+            An adjacency-list representation of the complete binary tree shown
+            in \autoref{figure:complete-binary-tree}%
+        }
+\end{minipage}
+
+\vspace{2em}
+
+%
+\begin{minipage}{\linewidth}
+    \centering
+
+    \begin{tabularx}{\linewidth}{ c | C C C C C C C |}
+          & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+        \hline
+        1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 \\
+        2 & 1 & 0 & 0 & 1 & 1 & 0 & 0 \\
+        3 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\
+        4 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        5 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        6 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+        7 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+        \hline
+    \end{tabularx}
+
+    \captionof
+        {figure}
+        {%
+            The adjacency-matrix representation of the complete binary tree
+            shown in \autoref{figure:complete-binary-tree}%
+        }
+\end{minipage}

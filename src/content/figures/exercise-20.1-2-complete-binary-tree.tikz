@@ -1,0 +1,38 @@
+\documentclass[tikz, border=5pt]{standalone}
+
+% Set styles for the nodes
+\tikzset{
+    leaf/.style = {circle, draw, thick, minimum size=1.5cm, inner sep=0pt},
+    root/.style = {circle, draw, thick, minimum size=1.5cm, inner sep=0pt}
+}
+
+\begin{document}
+\begin{tikzpicture}[thick]
+
+    % Level 0: Root
+    \node [root] (n1) at (0, 6) {1};
+
+    % Level 1: Internal Nodes
+    \node [root] (n2) at (-3, 3) {2};
+    \node [root] (n3) at ( 3, 3) {3};
+
+    % Level 2: Leaf Nodes
+    \node [leaf] (n4) at (-4.5, 0) {4};
+    \node [leaf] (n5) at (-1.5, 0) {5};
+    \node [leaf] (n6) at ( 1.5, 0) {6};
+    \node [leaf] (n7) at ( 4.5, 0) {7};
+
+    % Edges from Level 0 to Level 1
+    \draw (n1) -- (n2);
+    \draw (n1) -- (n3);
+    
+    % Edges from Level 1 to Level 2 (Left Subtree)
+    \draw (n2) -- (n4);
+    \draw (n2) -- (n5);
+    
+    % Edges from Level 1 to Level 2 (Right Subtree)
+    \draw (n3) -- (n6);
+    \draw (n3) -- (n7);
+
+\end{tikzpicture}
+\end{document}
