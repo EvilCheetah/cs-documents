@@ -3,7 +3,19 @@ Describe the differences between digital signature and digital certificate.
 
 \Solution
 
-Digital signature is a cryptographic mechanism, while digital certificate is an
-electronic document.
+A digital signature is a cryptographic mechanism used to verify the authenticity
+and integrity of a message, document, or piece of data.
 
-Digital signatures provide 
+A digital certificate is a digital document (structured file) issued by a
+trusted third party called a Certificate Authority (CA). Its purpose is to bind
+a public key to an identity (a person, organization, or device).
+
+\begin{tabularx}{\linewidth}{l | C | C}
+Feature      & Digital Signature                            & Digital Certificate                       \\\hline
+\hline
+Nature       & Cryptographic operation or output            & Structured data file or document          \\\hline
+Purpose      & Proves authenticity and integrity of data    & Binds a public key to a specific identity \\\hline
+Created by   & The message sender (using their private key) & A trusted Certificate Authority (CA)      \\\hline
+Protects     & A specific message or document               & A public key and its owner's identity     \\\hline
+Trust anchor & Mathematical proof (asymmetric cryptography) & A trusted third party (the CA)            \\
+\end{tabularx}
