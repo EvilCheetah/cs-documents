@@ -7,4 +7,37 @@ chain. How will this simple (yet flawed) design impact the security?
 
 \Solution
 
-Solution...
+Proof of Work (PoW) serves as a protocol to verify computational effort and acts
+as a safeguard to prevent malicious actors from compromising the ledger. Because
+generating specific hashes is resource-intensive, it becomes both
+computationally and financially prohibitive to add fraudulent blocks to the
+blockchain. This process requires nodes to solve complex mathematical puzzles,
+ensuring that no single entity can easily dominate the network.
+
+Without the PoW, several security issues arise:
+\begin{itemize}
+    \item \textbf{Sybil Attacks}: Without PoW, a malicious actor could create a
+    large number of fake nodes at little to no cost, allowing them to gain
+    disproportionate influence over the network's consensus mechanism.
+
+    \item \textbf{Double-Spending}: Without the computational cost of PoW acting
+    as a deterrent, an attacker could potentially broadcast two conflicting
+    transactions simultaneously, spending the same funds more than once before
+    the network can reach consensus.
+    
+    \item \textbf{Race Conditions}: Multiple valid blocks could be broadcast to
+    the network at nearly the same time, creating ambiguity about which
+    transaction should be considered final, and allowing bad actors to exploit
+    the window between submission and confirmation.
+
+    \item \textbf{Forks}: Without PoW enforcing a single canonical chain, the
+    network would have no reliable mechanism to resolve competing chain
+    branches, leading to persistent splits in the ledger and inconsistent
+    transaction histories across nodes.
+
+    \item \textbf{Security}: The overall integrity of the blockchain would be
+    severely weakened -- PoW ensures that rewriting history (e.g., a 51\%
+    attack) requires an enormous amount of computational resources, making such
+    attacks economically impractical. Without it, the cost of attacking the
+    network drops dramatically.
+\end{itemize}
