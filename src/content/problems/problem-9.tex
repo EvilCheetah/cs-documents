@@ -1,6 +1,6 @@
 \item[\textbf{Problem 9}]
 Now, suppose Alice and Bob use random numbers to enhance security. Alice signs
-the combination of message $M1 = \text{``This is Alice''}$ and a random number
+the combination of message $M_1 = \text{``This is Alice''}$ and a random number
 $R_1$, then send $M_1$, $R_1$, and digital signature to Bob; and Bob does the
 similar thing. Is this secure?
 
@@ -12,4 +12,29 @@ similar thing. Is this secure?
 
 \Solution
 
-Solution...
+The protocol is \textbf{NOT} secure. The protocol is modified so Alice signs the
+combination of $M_1 = \text{``This is Alice''}$ and a random number $R_1$. Bob
+does the same with $M_2$ and a random number $R_2$. While introducing random
+numbers is a step in the right direction, this specific implementation is still
+vulnerable to a replay attack.
+
+\begin{itemize}
+    \item For a random number (nonce) to effectively prevent replay attacks in a
+    challenge-response system, the verifier must generate the challenge.
+    
+    \item In this design, Alice generates her own random number $R_1$, packages
+    it with $M_1$, and signs the whole thing before sending it to Bob.
+    
+    \item Because Bob did not issue $R_1$ as a challenge to Alice, he has no way
+    of knowing if this is a fresh random number generated right now, or an old
+    one from a previous legitimate session.
+
+    \item Trudy can simply intercept the entire package ($M_1$, $R_1$, and the
+    signature) from a past session and send it to Bob later.
+    
+    \item Unless Bob is designed to perfectly memorize every single $R_1$ Alice
+    has ever sent him to check for duplicates, which contradicts the principles
+    of stateless server design mentioned elsewhere in your assignment, Bob's
+    system will verify the signature against the provided $M_1$ and $R_1$, and
+    falsely accept the replayed message.
+\end{itemize}
