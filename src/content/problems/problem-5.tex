@@ -4,4 +4,31 @@ explain potential countermeasures.
 
 \Solution
 
-Solution...
+Reflection Attack -- is an attack against symmetric key based authentication
+protocols where an attacker exploits a challenge-response exchange by opening a
+parallel session and reflecting the server's own challenge back at it, tricking
+it into computing the correct response. Since both parties share the same key
+and the protocol does not distinguish message direction or session context, the
+attacker uses the server as an unwitting oracle to authenticate without ever
+knowing the shared secret.
+
+To prevent reflection attacks, the overarching principle is to ensure the two
+parties do not do exactly the same thing. Specific countermeasures include:
+\begin{itemize}
+    \item \textbf{Initiator proves identity first}: The protocol should require
+    the initiator of the communication to authenticate themselves before the
+    responder does, operating on the assumption that the initiator is more
+    likely to be the attacker.
+    
+    \item \textbf{Directional key separation (Different Keys)}: Use distinct
+    keys for each communication direction (e.g., $K_{Alice-Bob} = K_{Bob-Alice}
+    + 1$), so a response encrypted for one direction cannot be reused in the
+    other.
+    
+    \item \textbf{Asymmetric challenges (Different Challenges)}: Structure
+    challenges so Alice and Bob's challenges cannot be the same, meaning they
+    use provably different formats.
+    
+    \item \textbf{Session binding}: Tag messages explicitly with session IDs and
+    roles to establish context, preventing cross-session reuse of messages.
+\end{itemize}
