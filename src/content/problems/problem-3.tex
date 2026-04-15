@@ -3,4 +3,24 @@ Describe the differences between PKI and KDC.
 
 \Solution
 
-Solution...
+PKI (Public Key Infrastructure) -- is a decentralized system using asymmetric
+cryptography. A Certificate Authority (CA) signs certificates that bind a public
+key to an identity, which anyone can verify without contacting the CA in real
+time. This makes it highly scalable and well-suited for open environments like
+the internet (e.g., HTTPS/TLS).
+
+KDC (Key Distribution Center) -- is a centralized system using symmetric
+cryptography (e.g., Kerberos). A central server shares a secret key with every
+user/service and issues session keys when two parties want to communicate. The
+KDC must be online during authentication, making it a single point of failure,
+but it works very efficiently in closed networks like corporate Active Directory
+environments.
+
+\begin{tabularx}{\linewidth}{l | C | C}
+Feature           & PKI                        & KDC                      \\\hline
+\hline
+Cryptography      & Asymmetric                 & Symmetric                \\\hline
+Architecture      & Decentralized              & Centralized              \\\hline
+Scalability       & High(internet-scale)       & Lower(domain-bound)      \\\hline
+Best suited for   & Open, large-scale networks & Closed, trusted networks \\
+\end{tabularx}
