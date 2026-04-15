@@ -7,4 +7,9 @@ Alice, but he already knows that. Why?)                                         
 
 \Solution
 
-Solution...
+In the Expanded Needham-Schroeder Protocol, the seventh message, intended for
+Bob to prove his active communication with Alice, is entirely redundant. Bob has
+already authenticated Alice in the sixth message by using his secret key to
+decrypt her ticket and reveal her name. Because this successfully confirms her
+identity to Bob, the seventh message can be safely removed from the protocol
+without compromising its security.
