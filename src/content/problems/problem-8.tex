@@ -12,4 +12,23 @@ Bob''}$. Explain the vulnerability.
 
 \Solution
 
-Solution...
+The protocol is \textbf{NOT} secure. In this protocol, Alice signs the static
+message $M_1 = \text{``This is Alice''}$ and Bob signs the static message $M_2 =
+\text{``This is Bob''}$. The critical vulnerability here is the complete lack of
+a mechanism to guarantee the ``freshness'' of the session.
+
+\begin{itemize}
+    \item An attacker (Trudy) can passively monitor the network and capture
+    Alice's transmission containing $M_1$ and her digital signature.
+    
+    \item At any later point in time, Trudy can initiate a new connection with
+    Bob and send that exact same copied message.
+    
+    \item Bob will use Alice's public key to verify the signature. Because the
+    signature is mathematically valid for the string ``This is Alice'', Bob will
+    successfully verify it and falsely authenticate Trudy as Alice.
+    
+    \item This design fails because there is no challenge involved to prove
+    Alice is actively generating a signature for this specific session at this
+    specific time.
+\end{itemize}
