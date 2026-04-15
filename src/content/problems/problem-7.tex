@@ -11,4 +11,9 @@ $K_{Bob}$ that only he knows. Is this protocol secure? Why?
 
 \Solution
 
-Solution...
+The protocol is \textbf{NOT} secure. It is also vulnerable to a \textbf{replay
+attack}, which compromises the authentication between the two parties. Although
+Bob attempts to handle his statelessness by sending an encrypted state token
+alongside the challenge, he still cannot verify the freshness of the response.
+An attacker can replay a previously captured message containing the old token
+and encrypted challenge to trick Bob into believing they are Alice.
