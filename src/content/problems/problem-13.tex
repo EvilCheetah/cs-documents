@@ -3,4 +3,21 @@ What is the difference between using proxy server and the Tor?
 
 \Solution
 
-Solution...
+A proxy server functions as an intermediary between a client device and the
+internet, forwarding requests such that the destination server observes the
+proxy's IP address rather than the originating device's. This architecture,
+however, introduces a single point of trust: the proxy operator retains
+visibility into the client's original IP address, browsing destinations, and any
+unencrypted traffic. While proxies offer low latency and are effective for
+circumventing geo-restrictions or network-level access controls, they provide
+limited anonymity and presuppose confidence in the operator's integrity.
+
+Tor is designed with a fundamentally different threat model, prioritizing
+trustless anonymity over performance. Rather than routing traffic through a
+single intermediary, Tor applies multiple layers of encryption and distributes
+the connection across at least three volunteer-operated relays — an entry,
+middle, and exit node. Each relay decrypts only the layer necessary to identify
+the next hop, ensuring that no individual node possesses both the client's
+identity and the requested destination. This multi-hop architecture
+substantially mitigates the risks of traffic analysis and network surveillance,
+at the cost of increased latency inherent to the additional routing complexity.
