@@ -1,34 +1,3 @@
-% --- C++ Color Definitions ---
-\definecolor{codebackground}{rgb}{0.95, 0.95, 0.96}
-\definecolor{codecomment}{rgb}{0.25, 0.50, 0.35}
-\definecolor{codekeyword}{rgb}{0.00, 0.30, 0.75}
-\definecolor{codestring}{rgb}{0.70, 0.10, 0.10}
-\definecolor{codenumber}{rgb}{0.50, 0.50, 0.50}
-
-% --- C++ Style Definition ---
-\lstdefinestyle{moderncpp}{
-    language=C++,
-    backgroundcolor=\color{codebackground},   
-    commentstyle=\color{codecomment}\itshape,
-    keywordstyle=\color{codekeyword}\bfseries,
-    stringstyle=\color{codestring},
-    numberstyle=\tiny\color{codenumber},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=10pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=4,
-    frame=single,
-    rulecolor=\color{black!20}
-}
-
-
 % --- Python Color Definitions ---
 \definecolor{pybackground}{rgb}{0.97, 0.97, 0.98}
 \definecolor{pycomment}{rgb}{0.40, 0.40, 0.40} % Grey for comments
@@ -38,7 +7,7 @@
 \definecolor{pybuiltin}{rgb}{0.56, 0.27, 0.52} % Plum for built-ins (like print, len)
 
 % --- Python Style Definition ---
-\lstdefinestyle{modernpython}{
+\lstdefinestyle{modern-python}{
     language=Python,
     backgroundcolor=\color{pybackground},
     commentstyle=\color{pycomment}\itshape,
@@ -50,6 +19,7 @@
     emph={print,len,range,enumerate,zip,help,input,list,dict,set,int,str,float},
     emphstyle=\color{pybuiltin},
     breakatwhitespace=false,
+    xleftmargin=20pt,
     breaklines=true,
     captionpos=b,
     keepspaces=true,
@@ -67,5 +37,4 @@
 }
 
 
-\lstset{style=moderncpp}
-\lstset{style=modernpython}
+\lstset{style=modern-python}

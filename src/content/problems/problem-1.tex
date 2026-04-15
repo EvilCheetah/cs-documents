@@ -9,8 +9,8 @@ Fermat Theorem, Euler Theorem, properties of totient functions, etc)
     \item $2^{-1} \bmod 17$ (i.e., multiplicative inverse of $2 \bmod 17$)
     \item $\text{ind}_{2,5}(4)$
     \item $\phi(8000)$
-    \item $\phi(98803519)$
-    \item $\phi(999866001989)$ \textcolor{red}{for the graduate session
+    \item $\phi(\num{98803519})$
+    \item $\phi(\num{999866001989})$ \textcolor{red}{for the graduate session
     only.}
 \end{enumerate}
 
@@ -124,43 +124,64 @@ Fermat Theorem, Euler Theorem, properties of totient functions, etc)
     \end{solution}
 
     
-    \item $\phi(98803519)$
+    \item $\phi(\num{98803519})$
     \begin{solution}
-        First, let's find the prime factorization of $98803519$:
+        First, let's find the prime factorization of $\num{98803519}$:
         \begin{alignat*}{2}
-            98803519   &= 9949 \times 9931
+            \num{98803519}   &= \num{9949} \times \num{9931}
         \end{alignat*}
 
-        Both $9949$ and $9931$, hence we can use Euler's Totient Function
+        Both $\num{9949}$ and $\num{9931}$, hence we can use Euler's Totient Function
         properties for distinct primes:
         \begin{alignat*}{2}
-            \phi(98803519)  &= \phi(9949 \times 9931)       \\
-                            &= \phi(9949) \times \phi(9931) \\
-                            &= 9948 \times 9930             \\
-                            &= 98783640
+            \phi(\num{98803519}) &= \phi(\num{9949} \times \num{9931})       \\
+                                 &= \phi(\num{9949}) \times \phi(\num{9931}) \\
+                                 &= \num{9948} \times \num{9930}             \\
+                                 &= \num{98783640}
         \end{alignat*}
-        Therefore, the answer is $98783640$.
+        Therefore, the answer is $\num{98783640}$.
     \end{solution}
 
     
-    \item $\phi(999866001989)$ \textcolor{red}{for the graduate session only.}
+    \item $\phi(\num{999866001989})$ \textcolor{red}{for the graduate session only.}
     \begin{solution}
-        First, let's find the prime factorization of $999866001989$:
+        First, let's find the prime factorization of $\num{999866001989}$:
         \begin{alignat*}{2}
-            999866001989   &= 999883 \times 999983
+            \num{999866001989}   &= \num{999883} \times \num{999983}
         \end{alignat*}
 
-        Both $999883$ and $999983$, hence we can use Euler's Totient Function
+        Both $\num{999883}$ and $\num{999983}$, hence we can use Euler's Totient Function
         properties for distinct primes:
         \begin{alignat*}{2}
-            \phi(98803519)  &= \phi(999883 \times 999983)       \\
-                            &= \phi(999883) \times \phi(999983) \\
-                            &= 999882 \times 999982             \\
-                            &= 999866001989
+            \phi(\num{98803519}) &= \phi(\num{999883} \times \num{999983})       \\
+                                 &= \phi(\num{999883}) \times \phi(\num{999983}) \\
+                                 &= \num{999882} \times \num{999982}             \\
+                                 &= \num{999864002124}
         \end{alignat*}
-        Therefore, the answer is $999866001989$.
+        Therefore, the answer is $\num{999864002124}$.
     \end{solution}
 \end{enumerate}
 
-% TODO(eugene): add note block with python code
-% TODO(eugene): SIunix to format numbers
+
+\begin{tcolorbox}[
+    colback=black!5!white,
+    colframe=black!75!white,
+    title=Note
+]
+    To determine whether an integer is prime and to extract its factors, the
+    following Python functions were used:
+
+    \lstinputlisting
+        [
+            style=modern-python,
+            caption={The \code{is_prime} function: Determines if a given integer is prime.}
+        ]
+        {../../code/is_prime.py}
+
+    \lstinputlisting
+        [
+            style=modern-python,
+            caption={The \code{print_factors} function: Calculates and displays the factors of an integer.}
+        ]
+        {../../code/print_factors.py}
+\end{tcolorbox}
