@@ -14,4 +14,8 @@ protocol secure? Why?
 
 \Solution
 
-Solution...
+The protocol is \textbf{NOT} secure. It is vulnerable to a \textbf{replay
+attack}, which compromises the authentication between the two parties. Because
+Bob is a stateless server and does not remember the challenge he originally
+sent, an attacker can replay a previous message to trick Bob into believing they
+are Alice.
