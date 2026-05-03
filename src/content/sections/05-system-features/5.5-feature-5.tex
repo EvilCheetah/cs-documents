@@ -26,23 +26,26 @@ with Google Calendar or Microsoft Outlook Calendar.
 
 % Use Case 9
 \begin{usecase}{UC-9: Sync Event to External Calendar} 
-    \textbf{Primary Actor}     & Mentee                                          \\ \hline
-    \textbf{Secondary Actors:} & Microsoft Graph API and Google Calendar API     \\ \hline
-    \textbf{Description}       & After a mentee RSVPs to an event, the
-                                 application will automatically push event
-                                 details to their Google Calendar or Microsoft
-                                 Outlook Calendars.                              \\ \hline
-    \textbf{Preconditions}     & PRE-1: Mentee is RSVP'd to an event.            \newline
-                                 PRE-2: Mentee has linked their Google or
-                                 Microsoft Outlook calendar(s).                  \\ \hline
-    \textbf{Postconditions}    & POST-1: Event is successfully integrated into
-                                 external calendar.                              \\ \hline
-    \textbf{Normal Flow}       & 
+    \textbf{Primary Actor}  & Mentee                                             \\ \hline
+    \textbf{Secondary Actor}& Microsoft Graph API and Google Calendar API        \\ \hline
+    \textbf{Description}    & After a mentee RSVPs to an event, the application
+                              will automatically push event details to their Google
+                              Calendar or Microsoft Outlook Calendars.            \\ \hline
+    \textbf{Trigger}        & Mentee RSVPs an event.                              \\ \hline
+    \textbf{Preconditions}  & PRE-1: Mentee is RSVP'd to an event. \newline
+                              PRE-2: Mentee has linked their Google or Microsoft
+                              Outlook calendar(s).                               \\ \hline
+    \textbf{Postconditions} & POST-1: Event is successfully integrated into
+                              external calendar.                                 \\ \hline
+    \textbf{%
+        Normal Flow%
+    }                       & 
     \begin{tabenum}
         \item Mentee RSVP's to event.
         \item Application sends event details to external calendar APIs.
         \item Event is created on external calendar.
-    \end{tabenum} \\
+    \end{tabenum}                                                                \\ \hline
+    \textbf{Priority}       & Medium                                             \\
 \end{usecase}
 
 
@@ -56,7 +59,6 @@ with Google Calendar or Microsoft Outlook Calendar.
     \begin{itemize}[label=$\circ$, nosep]
         \item \textit{Acceptance:} After a mentee RSVPs, the event is displayed
         on their external calendar.
-        
         \item \textit{Acceptance:} Events on application and external calendar
         share the same event title, date, start time, end time, location, and
         description.

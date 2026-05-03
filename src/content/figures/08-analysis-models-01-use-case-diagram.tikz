@@ -1,0 +1,120 @@
+\documentclass[tikz,border=10pt]{standalone}
+
+
+\usetikzlibrary{shapes.geometric, positioning, calc, fit}
+
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.8cm, every node/.style={text centered, font=\large}]
+
+
+\definecolor{googleblue}{HTML}{4285F4}
+\definecolor{googlered}{HTML}{EA4335}
+
+
+% --- Style Definitions ---
+\tikzset{
+  % Style for Use Cases (ovals)
+  usecase/.style={
+    draw,
+    ellipse,
+    inner sep=5pt,
+    minimum width=3.8cm,
+    minimum height=1.6cm,
+    line width=0.8pt,
+    text centered
+  },
+  arrow/.style={->, >=stealth, thick},
+  % Style for System Boundary
+  boundary/.style={
+    draw,
+    rounded corners=12pt,
+    inner sep=1.8cm,
+    line width=1.2pt
+  },
+  % Style for Actor labels
+  actor_label/.style={
+    font=\large\bfseries,
+    text width=2.8cm
+  }
+}
+
+% --- Command to draw a standard UML Actor Icon ---
+\newcommand{\drawumlactor}[1]{
+  \begin{scope}[shift={(#1.center)}]
+    \draw[line width=1pt] (0, 0.7) circle (0.22cm); % Head
+    \draw[line width=1pt] (0, 0.5) -- (0, -0.3); % Body
+    \draw[line width=1pt] (-0.35, 0.3) -- (0.35, 0.3); % Arms
+    \draw[line width=1pt] (0, -0.3) -- (-0.3, -0.8); % Left Leg
+    \draw[line width=1pt] (0, -0.3) -- (0.3, -0.8); % Right Leg
+  \end{scope}
+}
+
+% --- Part 1: Position the Use Cases (inside boundary) ---
+% Starting from 'Add users' and building up and down for perfect centering.
+\node (au) [usecase, xshift=4cm] {Add users}; % Reference center node
+\node (vc) [usecase, above=of au] {View Calendar};
+\node (ce) [usecase, above=of vc] {Create events};
+\node (ve) [usecase, above=of ce] {View events};
+\node (rn) [usecase, below=of au] {Receive notifications};
+\node (ru) [usecase, below=of rn] {Remove users};
+\node (je) [usecase, below=of ru] {Join event};
+\node (ie) [usecase, below=of je] {Invite to event};
+\node (le) [usecase, below=of ie] {Leave event};
+
+% --- Part 2: System Boundary ---
+% Fit the boundary rectangle around all use cases and label it.
+\node (bnd) [boundary, fit=(ve) (le) (ie.east) (ie.west)] {};
+\node [anchor=north west, xshift=0.6cm, yshift=-0.5cm, font=\Large\bfseries] at (bnd.north west) {Calendar System};
+
+% --- Part 3: Overall Title ---
+\node [font=\LARGE\bfseries, yshift=1.8cm] at (bnd.north) {Use Case Diagram};
+
+% --- Part 4: Actors (positioned relative to boundary) ---
+% - Mentee: aligned roughly with the top group (view/create)
+\coordinate (mentee_pos) at ($(bnd.north west)!0.15!(bnd.south west) - (4cm, 0)$);
+\node (mentee_actor) [actor_label, anchor=base, text centered] at ($(mentee_pos) - (0, 1.3cm)$) {Mentee};
+\drawumlactor{mentee_pos}
+
+% - Mentor: aligned with the middle group (view calendar)
+\coordinate (mentor_pos) at ($(bnd.north west)!0.45!(bnd.south west) - (4cm, 0)$);
+\node (mentor_actor) [actor_label, anchor=base, text centered] at ($(mentor_pos) - (0, 1.3cm)$) {Mentor};
+\drawumlactor{mentor_pos}
+
+% - Super Admin: aligned with the bottom group (remove users/event management)
+\coordinate (admin_pos) at ($(bnd.north west)!0.8!(bnd.south west) - (4cm, 0)$);
+\node (admin_actor) [actor_label, anchor=base, text centered] at ($(admin_pos) - (0, 1.3cm)$) {Super Admin};
+\drawumlactor{admin_pos}
+
+% --- Part 5: Connections (Lines) ---
+\begin{scope}[every path/.style={draw, line width=0.8pt}]
+% - Mentee: to 7 specified use cases
+\draw[arrow, solid] (mentee_pos) -- (ve.west);
+\draw[arrow, solid] (mentee_pos) -- (vc.west);
+\draw[arrow, solid] (mentee_pos) -- (rn.west);
+\draw[arrow, solid] (mentee_pos) -- (je.west);
+\draw[arrow, solid] (mentee_pos) -- (le.west);
+
+% - Mentor: to 7 specified use cases
+\draw[arrow, googleblue] (mentor_pos) -- (ve.west);
+\draw[arrow, googleblue] (mentor_pos) -- (ce.west);
+\draw[arrow, googleblue] (mentor_pos) -- (vc.west);
+\draw[arrow, googleblue] (mentor_pos) -- (rn.west);
+\draw[arrow, googleblue] (mentor_pos) -- (je.west);
+\draw[arrow, googleblue] (mentor_pos) -- (ie.west);
+\draw[arrow, googleblue] (mentor_pos) -- (le.west);
+
+% - Super Admin: to ALL 9 use cases
+\draw[arrow, googlered] (admin_pos) -- (ve.west);
+\draw[arrow, googlered] (admin_pos) -- (ce.west);
+\draw[arrow, googlered] (admin_pos) -- (vc.west);
+\draw[arrow, googlered] (admin_pos) -- (au.west);
+\draw[arrow, googlered] (admin_pos) -- (rn.west);
+\draw[arrow, googlered] (admin_pos) -- (ru.west);
+\draw[arrow, googlered] (admin_pos) -- (je.west);
+\draw[arrow, googlered] (admin_pos) -- (ie.west);
+\draw[arrow, googlered] (admin_pos) -- (le.west);
+\end{scope}
+
+\end{tikzpicture}
+\end{document}

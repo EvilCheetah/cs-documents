@@ -1,0 +1,50 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usetikzlibrary{positioning, calc}
+
+\begin{document}
+\begin{tikzpicture}[
+    % Define common styles for the nodes
+    node distance = 1.5cm and 2.5cm,
+    % Box style for clean rectangles with rounded corners, centered text
+    box/.style={
+        draw, thick,
+        rounded corners=0.5ex,
+        inner sep=6pt,
+        align=center,
+        font=\bfseries,
+        minimum height=3.5em,
+        text width=4cm, % This helps with text wrapping and consistency
+    },
+    % Arrow style for clear flow
+    arrow/.style={
+        thick,
+        -stealth
+    }
+]
+    % --- The Nodes (Component Boxes) ---
+    % First row (User flow to browser)
+    \node[box]                   (users)   {Users};
+    \node[box, right=of users]   (desktop) {Desktop Computer};
+    \node[box, right=of desktop] (browser) {Internet Browser};
+
+    % Second row (Application flow), aligned below the first
+    \node[box, below=of users] (react) {React      \\ Front end};
+    \node[box, right=of react] (api)   {Python     \\ FastAPI Server};
+    \node[box, right=of api]   (db)    {PostgreSQL \\ Data Base};
+
+    % --- The Title ---
+    % Place the main title above the middle node (desktop) to perfectly center it
+    \node[font=\Huge\bfseries, align=center, above=1.5cm of desktop] (title) {Architecture Diagram};
+
+    % --- The Connection Arrows ---
+
+    % Connect the components as in the diagram
+    \draw[arrow] (users) -- (desktop);
+    \draw[arrow] (desktop) -- (browser);
+
+    \draw[arrow] (react) -- (api);
+    \draw[arrow] (api) -- (db);
+
+    \draw[arrow] (browser.south) -- ($(browser.south)!0.5!(browser.south |- react.north)$) -| (react.north);
+\end{tikzpicture}
+\end{document}

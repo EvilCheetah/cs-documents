@@ -14,7 +14,7 @@ tasks:
 
     build:
         dir: ./src/
-        deps: [  ]
+        deps: [ compile:graphics ]
         vars:
             FLAGS: -pdf
             ENTRYPOINT: main.tex
@@ -37,3 +37,41 @@ tasks:
               {{ .COMPILER }} {{ .FLAGS }} \
               -output="{{ .JOBNAME }}.tex" \
               {{ .ENTRYPOINT }}
+
+    compile:graphics:
+        dir: ./src/
+        vars:
+            INPUT_DIR: content/figures
+            OUTPUT_DIR: content/figures
+        deps:
+            - task: compile:individual-graphic
+              vars: {
+                INPUT_DIR:  "{{ .INPUT_DIR }}",
+                OUTPUT_DIR: "{{ .OUTPUT_DIR }}",
+                FILE:       08-analysis-models-01-use-case-diagram.tikz 
+              }
+            - task: compile:individual-graphic
+              vars: {
+                INPUT_DIR:  "{{ .INPUT_DIR }}",
+                OUTPUT_DIR: "{{ .OUTPUT_DIR }}",
+                FILE:       08-analysis-models-02-architecture-diagram.tikz 
+              }
+            - task: compile:individual-graphic
+              vars: {
+                INPUT_DIR:  "{{ .INPUT_DIR }}",
+                OUTPUT_DIR: "{{ .OUTPUT_DIR }}",
+                FILE:       08-analysis-models-03-context-level-data-flow-diagram.tikz 
+              }
+
+    compile:individual-graphic:
+        internal: true
+        dir: ./src/
+        requires:
+            vars: [INPUT_DIR, OUTPUT_DIR, FILE]
+        vars:
+            FLAGS: -pdf
+        cmds:
+            - |
+              {{ .COMPILER }} {{ .FLAGS }}              \
+                -output-directory="./{{ .OUTPUT_DIR }}" \
+                {{ .INPUT_DIR }}/{{ .FILE }}

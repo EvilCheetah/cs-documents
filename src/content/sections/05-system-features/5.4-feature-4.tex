@@ -26,21 +26,24 @@ or mentors. The super admin can also promote or demote users.
     \textbf{Primary Actor}  & Super Admin                                        \\ \hline
     \textbf{Description}    & Super Admin is able to promote, demote, and assign
                               roles (mentee or mentor) to users.                 \\ \hline
-    \textbf{Preconditions}  & PRE-1: User is authorized as Super Admin.          \newline
+    \textbf{Trigger}        & Super Admin clicks on "Edit Role" on their
+                              dashboard.                                         \\ \hline
+    \textbf{Preconditions}  & PRE-1: User is authorized as Super Admin. \newline
                               PRE-2: Targeted user has logged in via OU SSO and
-                              database has saved "unassigned" to their role
-                              field.                                             \\ \hline
+                              database has saved "unassigned" to their role field. \\ \hline
     \textbf{Postconditions} & POST-1: User's new role is assigned to the role
                               field in database.                                 \\ \hline
-    \textbf{Normal Flow}    & 
+    \textbf{%
+        Normal Flow%
+    }                       & 
     \begin{tabenum}
         \item Super Admin navigates to their Super Admin interface.
         \item Super Admin selects targeted user.
         \item Super Admin selects "Edit Role".
-        \item Super Admin selects desired role (Mentor or Mentee) from drop down
-        menu.
+        \item Super Admin selects desired role (Mentor or Mentee) from drop down menu.
         \item Super Admin selects "Save Changes".
-    \end{tabenum} \\
+    \end{tabenum}                                                                \\ \hline
+    \textbf{Priority}       & High                                               \\
 \end{usecase}
 
 
@@ -53,13 +56,9 @@ or mentors. The super admin can also promote or demote users.
     \begin{itemize}[label=$\circ$, nosep]
         \item \textit{Acceptance:} A Super Admin can access their Super Admin
         dashboard.
-
         \item \textit{Acceptance:} A Super Admin can assign mentee or mentor
         role to user.
-
         \item \textit{Acceptance:} A Super Admin can promote or demote users
         between mentors and mentees.
     \end{itemize}
 \end{itemize}
-
-

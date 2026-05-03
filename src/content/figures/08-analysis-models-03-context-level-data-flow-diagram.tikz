@@ -1,0 +1,119 @@
+\documentclass[tikz,border=10pt]{standalone}
+
+% Required libraries for shapes and positioning
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows}
+
+\begin{document}
+
+% Definition of styles for the diagram elements
+\begin{tikzpicture}[
+    % Process shape (the main oval)
+    process/.style={
+        ellipse,
+        draw=black,
+        very thick,
+        minimum width=4cm,
+        minimum height=2cm,
+        align=center,
+        fill=blue!5, % a subtle color to distinguish it
+        drop shadow % a shadow for depth
+    },
+    % External Entity shape (the rectangular boxes)
+    entity/.style={
+        rectangle,
+        draw=black,
+        very thick,
+        minimum width=3.5cm,
+        minimum height=1cm,
+        align=center,
+        fill=white,
+        drop shadow
+    },
+    % Data Store shape (the open-ended rectangle)
+    datastore/.style={
+        rectangle,
+        draw=black,
+        very thick,
+        minimum width=4.5cm,
+        minimum height=1cm,
+        align=center,
+        inner sep=5pt,
+        path picture={
+            % Draw the parallel vertical lines at the ends
+            \draw[black, very thick] ([xshift=1ex]path picture bounding box.north west) -- ([xshift=1ex]path picture bounding box.south west);
+            \draw[black, very thick] ([xshift=-1ex]path picture bounding box.north east) -- ([xshift=-1ex]path picture bounding box.south east);
+            % Open up the horizontal edges
+            \draw[white, line width=3pt] (path picture bounding box.north west) -- (path picture bounding box.north east);
+            \draw[white, line width=3pt] (path picture bounding box.south west) -- (path picture bounding box.south east);
+        }
+    },
+    % Arrow style for data flows
+    flow/.style={
+        ->,
+        >={Stealth[scale=1.5]},
+        thick,
+        black,
+        font=\small % slightly smaller text for labels
+    },
+    % Style for the main diagram title
+    title/.style={
+        font=\Huge\bfseries\sffamily,
+        text centered,
+        minimum width=\linewidth
+    }
+]
+
+    % ==========================================
+    % 1. Create Nodes and Place Them
+    % ==========================================
+
+    % Process (center)
+    \node (program) [process] {Calendar\\Program};
+
+    % External Entities
+    \node (admin)   [entity, above=2.5cm of program] {Super Admin};
+    \node (mentor)  [entity, left=2.5cm of program]  {Mentor};
+    \node (mentees) [entity, right=2.5cm of program] {Mentees};
+
+    % Data Store (Data Base)
+    % A custom "open" shape for a professional DFD look
+    \node (database) [datastore, below=2.5cm of program] {Data Base};
+
+    % Main Title
+    \node [title, above=1cm of admin] {Context Level Data Flow Diagram};
+
+    % ==========================================
+    % 2. Draw Data Flows (Arrows)
+    % ==========================================
+
+    % A. Super Admin to Calendar Program
+    % Label placed in the middle of the flow
+    \draw [flow] (admin) -- node[midway, fill=white, inner sep=2pt] {add/remove users} (program);
+
+    % B. Mentor interaction
+    % Cycle with two arrows, as drawn
+    % Bend the flows to make a nice loop with separate labels
+    \draw [flow] ([yshift=0.5cm]mentor.east) to[bend left=15] node[midway, above, sloped] {create events} ([yshift=0.5cm]program.west);
+    \draw [flow] ([yshift=-0.5cm]program.west) to[bend left=15] node[midway, below, sloped] {view calendar} ([yshift=-0.5cm]mentor.east);
+
+    % C. Mentees interaction
+    % Recreating the drawn connectivity with professional labels
+    % First flow from Calendar to Mentees (consolidation of drawn labels)
+    \draw [flow] ([yshift=0.5cm]program.east) to[bend right=-15] node[midway, above, sloped, align=center] {invited to events } ([yshift=0.5cm]mentees.west);
+    % A potential flow back to the calendar (like an RSVP)
+    % Although not explicitly labeled in the sketch, a complete DFD needs this.
+    % I will use a question mark to represent the missing label, respecting your sketch.
+    \draw [flow] ([yshift=-0.5cm]mentees.west) to[bend right=-15] node[midway, below, sloped] {view event info/calendar} ([yshift=-0.5cm]program.east);
+
+    % D. Data Base interaction
+    % Draw with separate lines to represent distinct flows
+    % Two flows to the database
+    \draw [flow] ([xshift=-1.5cm]program.south) to[bend left=-15] node[midway, left] {Store events} ([xshift=-1.5cm]database.north);
+    \draw [flow] (program.south) to node[midway, fill=white] {Store user info} (database.north);
+
+    % One flow from the database
+    \draw [flow] ([xshift=1.5cm]database.north) to[bend left=-15] node[midway, right] {return user/\\event info} ([xshift=1.5cm]program.south);
+
+\end{tikzpicture}
+
+\end{document}
