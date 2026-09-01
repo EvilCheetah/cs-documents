@@ -1,0 +1,35 @@
+\item[\textbf{Problem 2}]
+For the three editors I want you to create the files \code{testnano.txt},
+\code{testvim.txt} and \code{testemacs.txt}, respectively, with the following
+text in each: ``\textit{This is some text.}''. Write out the commands needed to
+run the editor in Linux, along with the commands used inside the editor.
+
+\Solution
+
+\begin{itemize}
+    \item \code{nano} steps:
+    \begin{enumerate}[label=(\arabic*)]
+        \item Type the command \code{nano testnano.txt} and press \code{Enter}.
+        \item Type the following text: \code{This is some text.}.
+        \item Press \code{Ctrl+O} and then \code{Enter} to save the changes.
+        \item Press \code{Ctrl+X} to exit.
+    \end{enumerate}
+    
+    \item \code{vim} steps:
+    \begin{enumerate}[label=(\arabic*)]
+        \item Type the command \code{vim testvim.txt} and press \code{Enter}
+        \item Press \code{I} to enter \code{INSERT} mode
+        \item Type the following text: \code{This is some text.}
+        \item Press \code{Esc} to exit \code{INSERT} mode, i.e. to enter
+              \code{NORMAL} mode
+        \item Type \code{:wq}, i.e. write and quit, and press \code{Enter}
+    \end{enumerate}
+    
+    \item \code{emacs} steps:
+    \begin{enumerate}[label=(\arabic*)]
+        \item Type the command \code{emacs testemacs.txt} and press \code{Enter}
+        \item Type the following text: \code{This is some text.}
+        \item Press \code{Ctrl+X} then \code{Ctrl+C}. Press \code{y} when
+              prompted to save the document and exit.
+    \end{enumerate}
+\end{itemize}

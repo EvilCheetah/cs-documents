@@ -1,0 +1,73 @@
+\item[\textbf{Problem 3}]
+Copying Files Between Machines:
+\begin{enumerate}[label=(\arabic*)]
+    \item Transfer a file \textbf{from} your local machine \textbf{to} the OU
+          Linux machine. What did you need to install and what were the commands
+          that you used to do this?
+    \item Transfer a file \textbf{from} the OU Linux machines \textbf{to} your
+          local machine. What did you need to install and what were the commands
+          that you used to do this?
+    \item Transfer a file between two OU Linux machine. What were the commands
+          that you used to do this?
+\end{enumerate}
+
+\Solution
+
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Question 1}: Transfer a file \textbf{from} your local machine
+          \textbf{to} the OU Linux machine. What did you need to install and
+          what were the commands that you used to do this?
+          \\
+          \textbf{Answer}:
+          \begin{enumerate}
+            \item Install \href{https://filezilla-project.org/}{FileZilla} and
+                  open it.
+                  
+            \item Enter the GPEL \textbf{host name}, \textbf{username} (4x4),
+                  and \textbf{password}.
+
+            \item Set the \textbf{port number to 22}.
+            
+            \item Click \textit{Quickconnect} and accept the host key.
+            
+            \item On the remote machine, locate the desired file. On the local
+                  system, navigate to the directory where you want to save it.
+                  Then drag and drop the file from the remote to the local
+                  machine 
+          \end{enumerate}
+
+    \item \textbf{Question 2}: Transfer a file \textbf{from} the OU Linux
+          machines \textbf{to} your local machine. What did you need to install
+          and what were the commands that you used to do this?
+          \\
+          \textbf{Answer}: The process is the same as described in the answer to
+          Question 1. However, in this case, the target directory should be
+          selected on the OU machine. File should be dragged and dropped from
+          the local machine to the OU machine. In other words, the same process
+          is followed, but instead of downloading the file, it is uploaded to
+          the remote.
+
+    \item \textbf{Question 3}: Transfer a file between two OU Linux machine.
+          What were the commands that you used to do this?
+          \\
+          \textbf{Answer}:
+          \begin{enumerate}
+            \item Type \code{ifconfig} on the recipient machine to get its IP
+                  address.
+
+            \item On the sender machine, run the following command:
+                  \\
+                  \code{scp <SOURCE> <USERNAME>@<IP_ADDRESS>:<DESTINATION>}
+                  where:
+                  \begin{itemize}
+                      \item \code{<SOURCE>} is the absolute or relative path to
+                      the file to be transferred.
+                      \item \code{<USERNAME>} is the username on the recipient
+                      machine.
+                      \item \code{<IP_ADDRESS>} is the IP address of the
+                      recipient machine.
+                      \item \code{<DESTINATION>} is the destination directory
+                      where the transferred file should be saved.
+                  \end{itemize}
+          \end{enumerate}
+\end{enumerate}

@@ -1,0 +1,52 @@
+\item[\textbf{Problem 1}]
+Starting from any directory what are the sequences of commands to do the
+following?
+\begin{enumerate}[label=(\arabic*)]
+    \item Change the current working directory to your \textbf{home directory},
+    \item Make a new directory called \code{hw00},
+    \item Change the current working directory to \code{hw00},
+    \item Create two new sub-directories in \code{hw00} called \code{src} and
+          \code{ref},
+    \item Create a file called \code{test.s} in the directory \code{src},
+    \item Copy \code{test.s} to \code{test.txt} in the directory \code{ref},
+    \item Remove \code{test.s},
+    \item Remove the directory \code{hw00}.
+\end{enumerate}
+
+\Solution
+
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Question 1}: Change the current working directory to your home
+          directory
+          \\
+          \textbf{Answer}: \code{cd ~}
+
+    \item \textbf{Question 2}: Make a new directory called hw00
+          \\
+          \textbf{Answer}: \code{mkdir hw00}
+
+    \item \textbf{Question 3}: Change the current working directory to hw00
+          \\
+          \textbf{Answer}: \code{cd hw00}
+
+    \item \textbf{Question 4}: Create two new sub-directories in hw00 called src
+          and ref
+          \\
+          \textbf{Answer}: \code{mkdir src ref}
+
+    \item \textbf{Question 5}: Create a file called test.s in the directory src
+          \\
+          \textbf{Answer}: \code{touch src/test.s}
+          
+    \item \textbf{Question 6}: Copy test.s to test.txt in the directory ref
+          \\
+          \textbf{Answer}: \code{cp src/test.s ref/test.txt}
+
+    \item \textbf{Question 7}: Remove test.s
+          \\
+          \textbf{Answer}: \code{rm src/test.s}
+    
+    \item \textbf{Question 8}: Remove the directory hw00
+          \\
+          \textbf{Answer}: \code{rm -rf ../hw00}
+\end{enumerate}
