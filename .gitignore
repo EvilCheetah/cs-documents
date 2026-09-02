@@ -1,0 +1,9 @@
+# Output Directory
+out/
+
+# Generated / Cache Files
+vgcore.*
+prog
+*.c.gcov
+*.gcda
+*.gcno
