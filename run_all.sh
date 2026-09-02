@@ -11,7 +11,7 @@ directories=(
     Selection
     Statistics
     Transpose
-    # Histogram
+    Histogram
 )
 
 for directory in "${directories[@]}"; do
