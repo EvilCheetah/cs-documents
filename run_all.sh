@@ -1,47 +1,26 @@
 #!/usr/bin/bash
 
-cd Example/
-make -i
-make clean
-cd ..
+# Reference: https://stackoverflow.com/questions/8880603
 
-cd Merge/
-make -i
-make clean
-cd ..
+directories=(
+    Example
+    Merge
+    Quick
+    Bubble
+    Insertion
+    Selection
+    Statistics
+    Transpose
+    Histogram
+)
 
-cd Quick/
-make -i
-make clean
-cd ..
+for directory in "${directories[@]}"; do
+    (
+        cd "${directory}"
+        make
+        make clean
+    ) &
+done
 
-cd Bubble/
-make -i
-make clean
-cd ..
-
-cd Insertion/
-make -i
-make clean
-cd ..
-
-cd Selection/
-make -i
-make clean
-cd ..
-
-cd Statistics/
-make -i
-make clean
-cd ..
-
-cd Transpose/
-make -i
-make clean
-cd ..
-
-cd Histogram/
-make -i
-make clean
-cd ..
+wait
 
