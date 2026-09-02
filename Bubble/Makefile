@@ -69,4 +69,3 @@ clean:
 	rm -f *~
 	rm -f $(PROG)
 	rm -f *.gcda *.gcno *.gcov
-
