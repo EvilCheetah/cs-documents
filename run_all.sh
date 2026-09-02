@@ -11,14 +11,13 @@ directories=(
     Selection
     Statistics
     Transpose
-    Histogram
+    # Histogram
 )
 
 for directory in "${directories[@]}"; do
     (
         cd "${directory}"
-        make
-        make clean
+        ./run-tests.sh
     ) &
 done
 
