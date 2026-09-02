@@ -6,8 +6,8 @@
 
 
 void swap(float *left, float *right);
-void bubble_sort(float array[], int length);
-int  read_values(FILE *file, float *buffer, int length);
+void bubble_sort(float array[], int size);
+int  read_values(FILE *file, float *buffer, int size);
 
 
 int main(int argc, char *argv[])
@@ -27,20 +27,20 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Read Array Length
-    int length = 0;
-    if ( fscanf(file_in, "%d", &length) != 1 || length < 0 )
+    // Read Array size
+    int size = 0;
+    if ( fscanf(file_in, "%d", &size) != 1 || size < 0 )
     {
-        fprintf(stderr, "Error: The first line MUST contain a non-negative number representing the array length\n");
+        fprintf(stderr, "Error: The first line MUST contain a non-negative number representing the array size\n");
         fclose(file_in);
         return 1;
     }
 
     // Read Array Values
-    float *array = malloc((size_t)(length > 0 ? length : 1) * sizeof(float));
-    if ( array == NULL || read_values(file_in, array, length) != length )
+    float *array = malloc((size_t)(size > 0 ? size : 1) * sizeof(float));
+    if ( array == NULL || read_values(file_in, array, size) != size )
     {
-        fprintf(stderr, "Error: unable to read %d values from %s\n", length, argv[1]);
+        fprintf(stderr, "Error: unable to read %d values from %s\n", size, argv[1]);
         free(array);
         fclose(file_in);
         return 1;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     fclose(file_in);
 
     // Sort the Values
-    bubble_sort(array, length);
+    bubble_sort(array, size);
 
     // Write Sorted Array
     FILE *file_out = fopen(argv[2], "w");
@@ -59,8 +59,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    fprintf(file_out, "%d\n", length);
-    for(int index = 0; index < length; ++index)
+    fprintf(file_out, "%d\n", size);
+    for(int index = 0; index < size; ++index)
     {
         fprintf(file_out, OUTPUT_FORMAT, array[index]);
     }
@@ -81,16 +81,16 @@ void swap(float *left, float *right)
 }
 
 
-void bubble_sort(float array[], int length)
+void bubble_sort(float array[], int size)
 {
-    if ( array == NULL || length < 2 )
+    if ( array == NULL || size < 2 )
     {
         return;
     }
     
-    for (int i = 0; i < length - 1; ++i)
+    for (int i = 0; i < size - 1; ++i)
     {
-        for (int j = 0; j < length - i - 1; ++j)
+        for (int j = 0; j < size - i - 1; ++j)
         {
             if ( array[j] > array[j + 1] )
             {
@@ -101,10 +101,10 @@ void bubble_sort(float array[], int length)
 }
 
 
-int read_values(FILE *file, float *buffer, int length)
+int read_values(FILE *file, float *buffer, int size)
 {
     int index;
-    for (index = 0; index < length; ++index)
+    for (index = 0; index < size; ++index)
     {
         // Value Not Read
         // Source: https://stackoverflow.com/questions/28661915
