@@ -21,4 +21,22 @@ complete these steps?
 
 \Solution
 
-Problem 1 Solution...
+To create SSH keys, I can run \code{ssh-keygen} on macOS, Windows, or Linux. The
+system will prompt me for an optional passphrase. Once generated, the keys are
+stored in the \code{~/.ssh} directory. To add them to my GitLab account, I need
+to copy the contents of the public key (\code{.pub}) file and paste them under
+\textbf{Account Preferences $\rightarrow$ Access $\rightarrow$ SSH Keys}.
+
+Screenshot of added keys:
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-1-1.png}
+    \captionof{figure}{SSH Keys Dashboard}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{problem-1-2.png}
+    \captionof{figure}{SSH Key: Aorus Desktop}
+\end{minipage}
