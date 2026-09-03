@@ -8,4 +8,69 @@ did each step (mirror what is in the tutorial).
 
 \Solution
 
-Problem 3 Solution...
+\begin{enumerate}
+    \item Check out current runners
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-3-1.png}
+                \captionof
+                    {figure}
+                    {List of current runners for: \code{test-repository}}
+          \end{minipage}
+
+    \item Install GitLab Runner; installed using \code{yay}
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-3-2.png}
+                \captionof
+                    {figure}
+                    {Installation of \code{gitlab-runner}}
+          \end{minipage}
+
+    \item Register a Runner using CLI. \\
+          (\textbf{Note: Register Key is Revoked after Demo})
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-3-3-1.png}
+                \includegraphics[width=0.8\linewidth]{problem-3-3-2.png}
+                \captionof
+                    {figure}
+                    {Registration of Runner}
+          \end{minipage}
+
+    \item Created \code{.gitlab-ci.yml} and copied contents from guide.
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-3-4.png}
+                \captionof
+                    {figure}
+                    {Contents of \code{.gitlab-ci.yml}}
+          \end{minipage}
+    
+    \item Pushed \code{.gitlab-ci.yml} to the repository.
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-3-5-1.png}
+                \includegraphics[width=0.8\linewidth]{problem-3-5-2.png}
+                \captionof
+                    {figure}
+                    {Contents of \code{.gitlab-ci.yml} on \code{origin/main}}
+          \end{minipage}
+    
+    \item View the results of build pipeline.
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-3-6-1.png}
+                \includegraphics[width=0.8\linewidth]{problem-3-6-2.png}
+                \includegraphics[width=0.8\linewidth]{problem-3-6-3.png}
+                \captionof
+                    {figure}
+                    {Logs and Statuses of the Job}
+          \end{minipage}
+\end{enumerate}
