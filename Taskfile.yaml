@@ -2,7 +2,7 @@ version: '3'
 
 vars:
     COMPILER: latexmk
-    JOBNAME: Assignment-Template
+    JOBNAME: CS 4113 - PG -1 - Go on now. Git!
 
 tasks:
     cleanup:
