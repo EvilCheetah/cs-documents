@@ -1,0 +1,26 @@
+Queueing Theory is the study of waiting and cuts through in a fundamental way across many disciplines. In our context we will use it to provide a foundation for understanding performance in distributed systems. In some situations queues will be explicit to the design our code, and in other it will be implicit to the systems that we are building on.
+
+For one (1) of the following resource sets I want you to watch, summarize and reflect on the content. Additionally, I want you to synthesize at least one questions. We will use these questions to start a discussion in class. You will submit your reflections as a pdf file.
+
+
+Set 0
+Queuing theory and Poisson process (25min, theoretical) 
+https://www.youtube.com/watch?v=rBIQmwaoZfs
+LISA17 - Queueing Theory in Practice: Performance Modeling for the Working Engineer (45min, practical)
+https://www.youtube.com/watch?v=Hda5tMrLJqc
+
+Set 1
+[Harchol-Balter] "What Analytical Performance Modeling Teaches Us About Computer Systems Design." (older video, but throrough)
+https://www.youtube.com/watch?v=rT7WR89GMC4
+
+Set 2
+ Mor Harchol-Balter: Optimal Scheduling for Multi-Server Systems (1hr)
+https://www.youtube.com/watch?v=RXZRx_ET3v0
+
+Set 3
+ Fall 2020 LIDS Seminar — Mor Harchol-Balter (CMU) (1hr10min)
+https://www.youtube.com/watch?v=lDn5vT6ymQs
+
+Set 4
+ SREcon24 Americas - System Performance and Queuing Theory - Concepts and Application (Intro-ish) (1hr)
+https://www.youtube.com/watch?v=3at6ijBU2ug

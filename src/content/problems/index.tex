@@ -1,12 +1,157 @@
-\begin{enumerate}[
-    style      = multiline,
-    leftmargin = 8em,
-    labelwidth = 7.5em,
-    labelsep   = 0.5em,
-    itemsep    = 2em,
-    parsep     = 0.25em,
-]
-    \subimport{./}{problem-1.tex}
-    \subimport{./}{problem-2.tex}
-    \subimport{./}{problem-3.tex}
-\end{enumerate}
+\section{Problem}
+
+Queueing Theory is the study of waiting and cuts through in a fundamental way
+across many disciplines. In our context we will use it to provide a foundation
+for understanding performance in distributed systems. In some situations queues
+will be explicit to the design our code, and in other it will be implicit to the
+systems that we are building on.
+
+For \textbf{one} (1) of the following resource sets I want you to watch,
+summarize and reflect on the content. Additionally, I want you to synthesize at
+least one questions. We will use these questions to start a discussion in class.
+You will submit your reflections as a pdf file.
+
+\begin{itemize}
+    \item \textbf{Set 0}:
+          \\
+          \href
+             {https://www.youtube.com/watch?v=rBIQmwaoZfs}
+             {Queuing theory and Poisson process (25min, theoretical)}
+          \\
+          \href
+             {https://www.youtube.com/watch?v=Hda5tMrLJqc}
+             {%
+                LISA17 - Queueing Theory in Practice: Performance Modeling for
+                the Working Engineer (45min, practical)%
+            }
+            
+    \item \textbf{Set 1}:
+         \\
+         \href
+            {https://www.youtube.com/watch?v=rT7WR89GMC4}
+            {%
+                [Harchol-Balter] ``What Analytical Performance Modeling Teaches
+                Us About Computer Systems Design.''%
+            }
+            \textit{(older video, but throrough)}
+         
+    \item \textbf{Set 2}:
+          \\
+          \href
+            {https://www.youtube.com/watch?v=RXZRx_ET3v0}
+            {%
+                Mor Harchol-Balter: Optimal Scheduling for Multi-Server Systems
+                (1hr)%
+            }
+    
+    \item \textbf{Set 3}:
+          \\
+          \href
+            {https://www.youtube.com/watch?v=lDn5vT6ymQs}
+            {Fall 2020 LIDS Seminar — Mor Harchol-Balter (CMU) (1hr10min)}
+
+    \item \textbf{Set 4}
+          \\
+          \href
+            {https://www.youtube.com/watch?v=3at6ijBU2ug}
+            {%
+                SREcon24 Americas - System Performance and Queuing Theory -
+                Concepts and Application (Intro-ish) (1hr)%
+            }
+\end{itemize}
+
+\newpage
+\section{Solution}
+
+I chose the first set of videos.
+
+After watching the theoretical video, I initially had difficulty connecting the
+concepts to real-world engineering. Much of the video focused on formulas and
+their derivations. Even though there were a few examples, the ideas did not
+fully click for me at first.
+
+However, after watching Eben Freeman's practical talk, \textit{Queueing Theory
+in Practice: Performance Modeling for the Working Engineer}, I began to
+understand why these concepts are useful. What surprised me the most was seeing
+how the behavior of a system changes as more parallelism is introduced.
+
+Throughout my experience, I had generally thought about horizontal scaling as
+adding more instances in order to gain more processing capacity. The talk made
+me realize that this relationship is not necessarily linear. Adding more workers
+can initially improve throughput, but communication, synchronization, task
+assignment, and other coordination costs can eventually reduce those benefits.
+At a certain point, adding more resources may provide very little improvement or
+can even make performance worse.
+
+The load-balancing example made this particularly clear to me. If we try to find
+the optimal worker for every task by checking every available worker, the cost
+of making that decision grows along with the size of the system. A better
+approach may be to use an approximation, such as randomly selecting two workers
+and assigning the task to the better candidate. We give up the theoretically
+optimal assignment in exchange for dramatically lower coordination overhead.
+
+The distributed-query example also demonstrated an important architectural
+principle. Dividing work among more nodes makes the individual scanning
+operations faster, but collecting and aggregating the results introduces
+additional work. Instead of having one node coordinate with every worker
+directly, a hierarchy of intermediate aggregators can reduce this coordination
+cost and allow the system to scale more efficiently.
+
+My biggest realization from the video was that \textbf{horizontal scaling is not
+automatically the solution to a performance problem}. Before adding more compute
+resources, engineers should understand or attempt to understand where the
+bottleneck actually exists. Sometimes profiling the application and reducing the
+amount of work performed by each request can provide a greater improvement than
+adding additional servers. In other cases, the architecture may need to change
+so that less coordination is required between workers.
+
+This also has a direct impact on infrastructure cost. If a performance problem
+can be solved through code optimization, better task distribution, or a more
+efficient architecture, an organization may avoid unnecessary horizontal or
+vertical scaling.
+
+
+My biggest takeaways are:
+\begin{itemize}
+    \item Think carefully about scalability while designing a system rather than
+          assuming that adding resources will solve performance problems.
+    
+    \item Analyze the expected user load, throughput, latency, and computational
+          requirements.
+
+    \item Identify whether expensive tasks can be simplified or optimized before
+          increasing compute capacity.
+    
+    \item Use small experiments, benchmarks, and simulations to estimate how a
+          system will behave under greater load.
+    
+    \item Account for coordination overhead when parallelizing work.
+
+    \item Consider approximate algorithms when finding a perfectly optimal
+          solution would require excessive coordination.
+
+    \item Measure real systems because mathematical models are useful only when
+          their assumptions reasonably match reality.
+
+    \item Ask engineering questions such as:
+          \begin{itemize}
+                \item \textit{Is this solution efficient in terms of both
+                      latency and throughput?}
+                \item \textit{What will happen if I double the number of
+                      workers?}
+                \item \textit{Can I reduce the amount of work instead of adding
+                      more compute?}
+          \end{itemize}
+\end{itemize}
+
+\section{Questions}
+\textbf{Q}: What term describes a state in which increasing the workload or
+concurrency causes a system to spend so many resources on coordination or
+overhead that its useful throughput begins to decrease?
+\\
+\textbf{A}: Thrashing.
+
+\textbf{Q}: What are some techniques that could help prevent or mitigate this
+type of performance degradation?
+\\
+\textbf{A}: Reduce coordination, add throttling, etc.

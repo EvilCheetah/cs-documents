@@ -2,7 +2,7 @@ version: '3'
 
 vars:
     COMPILER: latexmk
-    JOBNAME: Assignment-Template
+    JOBNAME: CS 4113 - TECH 0 - Queueing Theory
 
 tasks:
     cleanup:
