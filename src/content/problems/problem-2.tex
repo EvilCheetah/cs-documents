@@ -25,4 +25,109 @@ between a commit and a push?
 
 \Solution
 
-Problem 2 Solution...
+\begin{enumerate}
+    \item In order to create a blank repository, navigate to
+          \href
+            {https://gitlab.com/dashboard/projects}
+            {https://gitlab.com/dashboard/projects}
+            or click \textbf{Projects} on the left. Click New Project, click
+            Create Blank Project, specify Project Name and Group or Namespace,
+            change visibility level(private by default) and toggle other
+            options, such as create with README, SAST option or Secret
+            Detection, click create project.
+            \\
+            \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-2-1.png}
+                \captionof{figure}{Blank Project: \code{test-repository}}
+            \end{minipage}
+
+    \item To clone a repository to your local directory, use the command: 
+          \code{git clone <URL>}. In my case it was
+          \code{git@gitlab.com:EvilCheetah/test-repository.git}.
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-2-2.png}
+                \captionof
+                    {figure}
+                    {%
+                        Cloning Repository: \code{git clone} followed by
+                        \code{git log}%
+                    }
+            \end{minipage}
+
+    \item To create a file, I used \code{touch main.py}.
+          To add files to commit, I used \code{git add .}.
+          For committing, I used \code{git commit -m <MESSAGE_BODY>}.
+          For pushing, I used \code{git push origin main}.
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-2-3-1.png}
+                \includegraphics[width=0.8\linewidth]{problem-2-3-2.png}
+                \captionof
+                    {figure}
+                    {%
+                        File Creation, committing and pushing%
+                    }
+            \end{minipage}
+
+    \item For creating a new branch, I used \code{git checkout -b test-branch}
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-2-4.png}
+                \captionof
+                    {figure}
+                    {Creating and Switching to \code{test-branch}}
+            \end{minipage}
+
+    \item To create a file, I used \code{touch test.py}.
+          To add files to commit, I used \code{git add .}.
+          For committing, I used \code{git commit -m <MESSAGE_BODY>}.
+          For pushing, I used \code{git push origin test-branch}.
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-2-5-1.png}
+                \includegraphics[width=0.8\linewidth]{problem-2-5-2.png}
+                \captionof
+                    {figure}
+                    {%
+                        File Creation, committing and pushing%
+                    }
+            \end{minipage}
+    
+    \item To merge, I checked out \code{main} branch using
+          \code{git checkout main},
+          then applied a merge using \code{git merge test-branch},
+          and pushed using \code{git push origin main}.
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-2-6-1.png}
+                \includegraphics[width=0.8\linewidth]{problem-2-6-2.png}
+                \captionof
+                    {figure}
+                    {%
+                        Merge and Push%
+                    }
+            \end{minipage}
+
+    \item To add a tag, I used the following command:
+          \code{git tag -a feature-a -m "feature a"}
+          To push a tag, I used the following command:
+          \code{git push origin main --tags}
+          \\
+          \begin{minipage}{\linewidth}
+                \centering
+                \includegraphics[width=0.8\linewidth]{problem-2-7-1.png}
+                \includegraphics[width=0.8\linewidth]{problem-2-7-2.png}
+                \captionof
+                    {figure}
+                    {%
+                        Adding Feature Tag and Pushing%
+                    }
+            \end{minipage}
+\end{enumerate}
