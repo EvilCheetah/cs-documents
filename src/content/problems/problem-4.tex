@@ -38,19 +38,19 @@ Git Pipelines part II.
 \Solution
 
 \begin{enumerate}
-    \item In build stage, users tries to automatically compile a C++ file using
-          \code{g++} compiler.
+    \item In the build stage, the author attempted to automatically compile a
+          C++ file using the \code{g++} compiler.
           \begin{itemize}
-                \item File that is being compiled: \code{helloworld.cpp}
-                \item Executable that is being created: \code{mybinary}
-                \item Code that is in \code{./runmytests.sh}: test suite, most
-                      likely e2e tests, against the binary that was compiled in
-                      build stage
+                \item File being compiled: \code{helloworld.cpp}
+                \item Executable being created: \code{mybinary}
+                \item The code in \code{./runmytests.sh} contains a test suite,
+                      most likely end-to-end (E2E) tests, that runs against the
+                      binary compiled during the build stage.
           \end{itemize}
 
     \item
     \begin{enumerate}
-        \item Create and clone the repository
+        \item Created and cloned the repository.
               \\
               \begin{minipage}{\linewidth}
                     \centering
@@ -58,21 +58,21 @@ Git Pipelines part II.
                     \includegraphics[width=0.8\linewidth]{problem-4-1-2.png}
                     \captionof
                         {figure}
-                        {Cloning empty Repository}
+                        {Cloning an Empty Repository}
               \end{minipage}
         
-        \item Create \code{runmytests.sh} and change permissions
+        \item Created \code{runmytests.sh} and changed its permissions.
               \\
               \begin{minipage}{\linewidth}
                     \centering
                     \includegraphics[width=0.8\linewidth]{problem-4-2.png}
                     \captionof
                         {figure}
-                        {\code{runmytests.sh} and permissions}
+                        {\code{runmytests.sh} and Its Permissions}
               \end{minipage}
         
-        \item Create \code{main.cpp}, \code{.gitignore}, and
-              \code{.gitlab-ci.yml}
+        \item Created \code{main.cpp}, \code{.gitignore}, and
+              \code{.gitlab-ci.yml}.
               \\
               \begin{minipage}{\linewidth}
                     \centering
@@ -81,10 +81,10 @@ Git Pipelines part II.
                     \includegraphics[width=0.8\linewidth]{problem-4-3-3.png}
                     \captionof
                         {figure}
-                        {Code creation, committing and pushing}
+                        {Code Creation, Committing, and Pushing}
               \end{minipage}
         
-        \item Push the files and verify execution of build pipeline
+        \item Pushed the files and verified the execution of the build pipeline.
               \\
               \begin{minipage}{\linewidth}
                     \centering
@@ -93,7 +93,7 @@ Git Pipelines part II.
                     \includegraphics[width=0.8\linewidth]{problem-4-4-3.png}
                     \captionof
                         {figure}
-                        {Logs and Statuses of the Job}
+                        {Job Logs and Statuses}
               \end{minipage}
     \end{enumerate}
 \end{enumerate}

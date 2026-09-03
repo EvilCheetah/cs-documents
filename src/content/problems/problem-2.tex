@@ -26,15 +26,16 @@ between a commit and a push?
 \Solution
 
 \begin{enumerate}
-    \item In order to create a blank repository, navigate to
+    \item To create a blank repository, navigate to
           \href
             {https://gitlab.com/dashboard/projects}
-            {https://gitlab.com/dashboard/projects}
-            or click \textbf{Projects} on the left. Click New Project, click
-            Create Blank Project, specify Project Name and Group or Namespace,
-            change visibility level(private by default) and toggle other
-            options, such as create with README, SAST option or Secret
-            Detection, click create project.
+            {https://gitlab.com/dashboard/projects} or click \textbf{Projects}
+            on the left. Click \textbf{New Project}, then \textbf{Create Blank
+            Project}. Specify the project name and group or namespace, change
+            the visibility level (private by default), and configure any other
+            options, such as creating the repository with a README file,
+            enabling SAST, or enabling Secret Detection. Finally, click
+            \textbf{Create project}.
             \\
             \begin{minipage}{\linewidth}
                 \centering
@@ -42,10 +43,9 @@ between a commit and a push?
                 \captionof{figure}{Blank Project: \code{test-repository}}
             \end{minipage}
 
-    \item To clone a repository to your local directory, use the command: 
-          \code{git clone <URL>}. In my case it was
-          \code{git@gitlab.com:EvilCheetah/test-repository.git}.
-          \\
+    \item To clone a repository to a local directory, use the command
+          \code{git clone <URL>}. In my case, the URL was
+          \code{git@gitlab.com:EvilCheetah/test-repository.git}. \\
           \begin{minipage}{\linewidth}
                 \centering
                 \includegraphics[width=0.8\linewidth]{problem-2-2.png}
@@ -58,9 +58,10 @@ between a commit and a push?
           \end{minipage}
 
     \item To create a file, I used \code{touch main.py}.
-          To add files to commit, I used \code{git add .}.
-          For committing, I used \code{git commit -m <MESSAGE_BODY>}.
-          For pushing, I used \code{git push origin main}.
+          To stage the file for committing, I used \code{git add .}.
+          To commit the changes, I used \code{git commit -m <MESSAGE_BODY>}.
+          To push the commit to the remote repository, I used
+          \code{git push origin main}.
           \\
           \begin{minipage}{\linewidth}
                 \centering
@@ -73,7 +74,8 @@ between a commit and a push?
                     }
           \end{minipage}
 
-    \item For creating a new branch, I used \code{git checkout -b test-branch}
+    \item To create a new branch and switch to it, I used
+          \code{git checkout -b test-branch}.
           \\
           \begin{minipage}{\linewidth}
                 \centering
@@ -84,9 +86,10 @@ between a commit and a push?
           \end{minipage}
 
     \item To create a file, I used \code{touch test.py}.
-          To add files to commit, I used \code{git add .}.
-          For committing, I used \code{git commit -m <MESSAGE_BODY>}.
-          For pushing, I used \code{git push origin test-branch}.
+          To stage the file for committing, I used \code{git add .}.
+          To commit the changes, I used \code{git commit -m <MESSAGE_BODY>}.
+          To push the commit to the remote branch, I used
+          \code{git push origin test-branch}.
           \\
           \begin{minipage}{\linewidth}
                 \centering
@@ -95,14 +98,14 @@ between a commit and a push?
                 \captionof
                     {figure}
                     {%
-                        File Creation, committing and pushing%
+                        File Creation, Committing and Pushing%
                     }
           \end{minipage}
     
-    \item To merge, I checked out \code{main} branch using
-          \code{git checkout main},
-          then applied a merge using \code{git merge test-branch},
-          and pushed using \code{git push origin main}.
+    \item To merge the branch, I first checked out the \code{main} branch using
+          \code{git checkout main}. I then merged \code{test-branch} into
+          \code{main} using \code{git merge test-branch} and pushed the changes
+          using \code{git push origin main}.
           \\
           \begin{minipage}{\linewidth}
                 \centering
@@ -115,10 +118,13 @@ between a commit and a push?
                     }
           \end{minipage}
 
-    \item To add a tag, I used the following command:
-          \code{git tag -a feature-a -m "feature a"}
-          To push a tag, I used the following command:
-          \code{git push origin main --tags}
+    \item To create an annotated tag, I used the following command:
+          \\
+          \code{git tag -a feature-a -m "feature a"}.
+          \\
+          To push the tag to the remote repository, I used the following command:
+          \\
+          \code{git push origin main --tags}.
           \\
           \begin{minipage}{\linewidth}
                 \centering
