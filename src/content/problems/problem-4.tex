@@ -1,5 +1,39 @@
 \item[\textbf{Problem 4}]
-Problem 4 Description...
+Git Pipelines part II.
+
+\begin{enumerate}
+    \item Look at the pipeline template for C/C++ projects:
+          \href
+            {https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/C++.gitlab-ci.yml}
+            {https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/C++.gitlab-ci.yml}
+          \\
+          What is going on here? What is the file being compiled? What is the
+          executable being created? What code do you think is in
+          \code{./runmytests.sh}?
+
+    \item Create a new repository for a helloworld C++ program (or C) using this
+          pipeline. You will need to bring your own hello world and implement
+          your own shell script for runmytests.sh. Take a screenshot of your
+          C/C++ file, runmytests.sh, and of gitlab showing a successful pass.
+          The following links will help you in creating your shell script for
+          the test:
+          \begin{itemize}
+            \item \href
+                    {https://www.tecmint.com/assign-linux-command-output-to-variable/}
+                    {https://www.tecmint.com/assign-linux-command-output-to-variable/}
+            \item \href
+                    {https://phoenixnap.com/kb/bash-string-comparison}
+                    {https://phoenixnap.com/kb/bash-string-comparison}
+            \item \href
+                    {https://www.shellscript.sh/}
+                    {https://www.shellscript.sh/}
+                    (this is overkill, but you will likely read it sometime in
+                    your professional life)
+            \item \href
+                    {https://www.warp.dev/terminus/chmod-x}
+                    {https://www.warp.dev/terminus/chmod-x}
+          \end{itemize}
+\end{enumerate}
 
 \Solution
 
