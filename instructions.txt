@@ -1,0 +1,126 @@
+Dr. Richard M. Veras
+C++ Refresher
+
+Goal: These problems are meant to get you into the groove of programming with C++. In addition to
+providing correct code, you will also need to provide test cases that give you 100% coverage with gcov
+and 0 memory leaks reported under valgrind. The instructions for running gcov and valgrind will be
+provided at the end of the document. You may use outside code, but you must document its use. Your
+submission to canvas will be a tarball (submission.tar.gz) of the problems with the following directory
+structures:
+
+Each directory will contain a prog.cpp, Makefile and the test cases that you use. Adapt the provided
+Makefile to your programs and use the target names listed in that Makefile. Submissions that do not
+follow this directory and Makefile format will not be graded.
+
+
+0. ./Problems/list-command-interpreter/prog.cpp
+
+The program will be given an <input filename> and <output filename> as command line
+arguments. The <input filename> will contain the specification of the list and a
+sequence of commands. The first line will be the specification and is denoted by
+'spec n' where 'n' is the length of the list. If 'n<0' then the list is unbounded.
+The following lines in <input filename> are the commands 'insert-front X' and
+'insert-back X' which insert the character 'X' into the front (left most) or back
+of the list, respectively. Additionally, the commands 'remove-front' and 'remove-back'
+remove the character at the front or back of the list, respectively.
+
+The <output filename> will contain the state of the list after each command, starting
+with 'spec'. Each line will follow the format:
+'l: N | x{0} x{1} ... x{N-1}'
+Where l is the line number of the corresponding command in <input filename>, 'N' is the
+current number of elements in the list. And, 'x{0} x{1} ... x{N-1}' are the current 'N'
+elements in the list.
+
+If an element was inserted to already full list then a carrat ('^') symbol will be
+placed on the element in the position that it would have been added into the list.
+If a list is empty and the remove command is issued then the symbols '()^' should
+be displayed in the list's state.
+
+
+
+Example input and output pairs.
+
+
+./prog.x <input file> <output file>
+ ----------------------------------- 
+|<input file>   ||   <output file>  |
+ ----------------------------------- 
+|spec -1        ||   0: 0 |         |  
+|insert-front a	||   1: 1 | a       |  
+|insert-front b	||   2: 2 | b a     |  
+|insert-back c	||   3: 3 | b a c   |  
+|remove-front   ||   4: 2 | a c     |  
+|remove-back    ||   5: 1 | a       |  
+ -----------------------------------
+
+
+./prog.x <input file> <output file>
+ ------------------------------------- 
+|<input file>   ||   <output file>    |
+ ------------------------------------- 
+|spec 1         ||   0: 0 |           |
+|insert-front a ||   1: 1 | a         |
+|insert-front b ||   2: 1 | b^ a      |
+|insert-back c  ||   3: 1 | a c^      |
+|remove-front   ||   4: 0 |           |
+|remove-back    ||   5: 0 | ()^       |
+ ------------------------------------- 
+
+
+
+
+1. ./Problems/kv-command-interpreter/prog.cpp
+
+The program will be given an <input filename> and <output filename> as command line
+arguments. The <input filename> will contain a sequence of commands that will be
+applied in-order on a a key-value datastore. This datastore will use single characters
+as keys and sets of characters as the value.
+
+The commadns are as follows:
+'create k' - create an entry with the key 'k'. ('datastore[k] = {}')
+'read k' - print the set of values stored at 'k'. ('datastore[k] = {v0,v1,...}')
+'insert k v' - insert the value 'v' to set the values at entry 'k'. ('datastore[k] = {}' becomes 'datastore[k] = {v}')
+'delete k' - remove the key and entry for 'k' ('no-key k')
+
+
+The <output filename> will contain the results of each command performed in terms of entry
+being accessed. Each response will take the form of:
+
+'datastore[k] = {v0,v1,...}' or 'no-key X'
+
+For example, the rep
+
+ --------------------------------------
+| <input file> || <output file>        |
+ --------------------------------------
+| create k     || datastore[k] = {}    |
+| read k       || datastore[k] = {}    |
+| read l       || no-key l             |
+| delete l     || no-key l             |
+| insert k v   || datastore[k] = {v}   |
+| insert k u   || datastore[k] = {v, u}|
+| insert k u   || datastore[k] = {v, u}|
+| delete k     || no-key l             |
+ --------------------------------------
+
+
+
+
+X. References:
+1. Makefiles explained:
+https://makefiletutorial.com/
+https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
+
+2. GDB is a powerful tool that is worth learning for these problems (run it using the terminal
+interface flag gdb -tui):
+https://www.cs.umd.edu/~srhuang/teaching/cmsc212/gdb-tutorial-handout.pdf
+https://developers.redhat.com/blog/2021/04/30/the-gdb-developers-gnu-debugger-tutorial-part-1-getting-started-with-the-debugger#next_up
+https://www.cs.cmu.edu/~gilpin/tutorial/
+
+3. How to use valgrind to find memory leaks:
+https://valgrind.org/docs/manual/quick-start.html
+https://www.cs.swarthmore.edu/~newhall/unixhelp/purify.html
+
+4. How to use gcov for code coverage:
+https://www.cs.swarthmore.edu/~newhall/unixhelp/purify.html
+
