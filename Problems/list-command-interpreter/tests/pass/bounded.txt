@@ -1,0 +1,11 @@
+spec 3
+insert-back a
+insert-front b
+insert-back c
+insert-back d
+insert-front e
+remove-front
+remove-back
+remove-front
+remove-front
+remove-back

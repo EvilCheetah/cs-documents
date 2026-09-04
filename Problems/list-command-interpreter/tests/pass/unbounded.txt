@@ -1,0 +1,5 @@
+spec -1
+insert-back x
+insert-back y
+insert-front w
+remove-back
